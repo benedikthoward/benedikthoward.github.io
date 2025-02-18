@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <title>Benedikt Howard's Portfolio</title>
+  <style>
+    /* Global styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* Make images and videos responsive by default */
+    img,
+    video {
+      max-width: 70%;
+      height: auto;
+      display: block;
+    }
+    .banner {
+      background: url("vancouver banner.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: left;
+      padding: 25px;
+      font-size: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background-color: #555;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .tab {
+      padding: 15px 30px;
+      cursor: pointer;
+      color: white;
+    }
+    .tab:hover,
+    .tab.active {
+      background-color: #777;
+    }
+    .section {
+      padding: 50px;
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+    .text {
+      flex: 1 1 50%;
+      min-width: 300px;
+    }
+
+    /* --------------------------------
+      ABOUT ME STYLING (Updated Layout)
+    -------------------------------- */
+    #About\ Me .about-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;  /* Align items at the top edge */
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto; /* Center the container horizontally */
+    }
+
+    /* Left column with headshot + buttons */
+    .profile-section {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Left-align the content */
+      gap: 20px;
+    }
+
+    .headshot {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .button-bar {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .button-bar button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #555;
+      color: white;
+      font-size: 1rem;
+    }
+    .button-bar button:hover {
+      background-color: #777;
+    }
+    .location {
+      font-style: italic;
+    }
+
+    /* Right column with bio + PDF viewer */
+    .bio-section {
+      flex: 1 1 0; /* let this grow/shrink as needed */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .resume-viewer {
+      width: 100%;
+      height: 600px; /* Adjust as needed */
+      border: 1px solid #ccc;
+    }
+
+    /* -----------------------------------
+       Additional styling for "Class work"
+       (We must escape spaces in IDs in CSS.)
+       ----------------------------------- */
+    #Class\ work .project-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px; /* space between subsections (motherboard, H-bridge, etc.) */
+      margin-top: 20px;
+    }
+    /* A row with an image and a video side by side */
+    #Class\ work .single-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    /* For pairs of images side by side */
+    .image-pair {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    /* Figure + figcaption styling (optional) */
+    figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0; /* remove default margins */
+    }
+    figcaption {
+      margin-top: 8px;
+      font-style: italic;
+      text-align: center;
+    }
+    /* Utility classes for images/videos in Class work */
+    .project-image {
+      max-width: 400px; /* set a comfortable max width */
+    }
+    .project-video {
+      max-width: 400px; /* same for video, or any size you prefer */
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">Benedikt Howard's Portfolio</div>
+  <div class="tabs">
+    <div class="tab active" onclick="showSection('About Me')">About Me</div>
+    <div class="tab" onclick="showSection('Professional Experience')">Professional Experience</div>
+    <div class="tab" onclick="showSection('Projects')">Projects</div>
+    <div class="tab" onclick="showSection('Class work')">Class work</div>
+    <div class="tab" onclick="showSection('Woodworking')">Woodworking</div>
+  </div>
+
+  <!-- ABOUT ME (Default/Active tab) -->
+  <div id="About Me" class="section active">
+    <div class="about-container">
+      
+      <!-- Left: Headshot & Buttons -->
+      <div class="profile-section">
+        <img src="headshot.jpeg" alt="Benedikt's Headshot" class="headshot" />
+        
+        <div class="button-bar">
+          <!-- Email button -->
+          <button onclick="window.location.href='mailto:benedikthoward@gmail.com'">
+            Email Me
+          </button>
+          <!-- LinkedIn button -->
+          <button onclick="window.open('https://www.linkedin.com/in/benedikt-howard-256939255/', '_blank')">
+            LinkedIn
+          </button>
+        </div>
+        
+        <!-- Location -->
+        <p class="location">Vancouver, Canada</p>
+      </div>
+      
+      <!-- Right: Short Bio + Resume Viewer -->
+      <div class="bio-section">
+        <h3>Bio</h3>
+        <p>
+            I am a technology enthusiast with a deep passion for robotics,
+             autonomous systems, and artificial intelligence. I also maintain 
+             a keen interest in finance and venture capital, exploring how
+              innovative solutions can transform both the technological and
+               business landscapes.
+        </p>
+
+        <!-- PDF Viewer (embedded resume) -->
+        <iframe
+          src="Benedikt_Howard_Resume.pdf"
+          class="resume-viewer"
+          title="Benedikt Howard's Resume"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <div id="Professional Experience" class="section">
+    <h2>BMW - Software Engineering</h2>
+    <div class="text">
+      <ul>
+        <li>
+          Designed and implemented a
+          <strong>live data-monitoring platform</strong> for the Quality Assurance
+          team, eliminating the need for massive manual searches to find vehicle
+          error patterns.
+        </li>
+        <li>
+          Achieved real-time error pattern detection in vehicle fleet by using
+          <strong>Python</strong> and <strong>Palantir</strong> ecosystem to
+          process and clean high-volume vehicle telemetry and warranty reports.
+        </li>
+        <li>
+          Automated the detection of vehicle error patterns using
+          <strong>Machine Learning algorithms</strong> (DBSCAN, Spectral-Net).
+        </li>
+        <li>
+          Fine-tuned custom ChatGPT 3.5 model using manual case reviews to
+          produce case reviews based on clustered data.
+        </li>
+        <li>
+          The platform was approved for production and adopted by 60 engineers,
+          reducing time spent on error detection by 93%.
+        </li>
+      </ul>
+    </div>
+    <img
+      src="BMW_internship.png"
+      alt="Internship product flow chart"
+      height="650"
+    />
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="Projects" class="section">
+    <h3>Trading Algorithm</h3>
+    currently in progress
+    <h3>Alarm clock</h3>
+    <div class="text">
+      <ul>
+        <li>Used an ESP32 S3 to build an alarm clock.</li>
+        <li>
+          The alarm sound is a daily news brief from Reuters. I wrote a custom
+          text-to-speech port for the ESP.
+        </li>
+        <li>
+          During the day, the OLED screen displays the time along with live
+          stock market information.
+        </li>
+      </ul>
+    </div>
+    <p>pictures coming soon</p>
+    <h3>UBC Formula Electric Battery Modeling</h3>
+    <ul>
+      <li>
+        Designed and validated custom PCB for the Battery Management module.
+        Wrote firmware on embedded devices (NXP) for data collection, cell
+        balancing, and real-time state of charge (SOC) estimation.
+      </li>
+      <li>
+        Used collected data to model Li-Po cell discharge behavior and improve
+        the SOC estimation algorithm by >40% accuracy.
+      </li>
+    </ul>
+    <img src="FE_board.JPG" height="450" />
+  </div>
+
+  <!-- CLASS WORK -->
+  <div id="Class work" class="section">
+    <h3>ENPH 353 - Autonomous driving</h3>
+    much more coming soon
+    <div class="text">
+      <img src="SIFTFLANN.png">
+    </div>
+    <div class="image-pair">
+    <figure>
+        <img
+        src="IntermediateLineFollow.gif"
+        class="project-image"
+        />
+        <figcaption>world view</figcaption>
+    </figure>
+    <figure>
+        <img
+        src="SimpleLineFollow.gif"
+        class="project-image"
+        />
+        <figcaption>robot view</figcaption>
+    </figure>
+    </div>
+    
+    <h3>ENPH 253 - Robot Summer</h3>
+    <div class="project-container">
+      <!-- Robot image and video row -->
+      <div class="single-row">
+        <img src="robot.jpg" alt="Robot" class="project-image" />
+        <video controls class="project-video">
+          <source src="robot_vid.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <!-- Main motherboard images -->
+      <h4>Robot's main motherboard</h4>
+      <div class="image-pair">
+        <figure>
+          <img
+            src="main motherboard.png"
+            alt="Main motherboard"
+            class="project-image"
+          />
+          <figcaption>Main motherboard (top view)</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="main motherboad sch.png"
+            alt="Main motherboard schematic"
+            class="project-image"
+          />
+          <figcaption>Main motherboard schematic</figcaption>
+        </figure>
+      </div>
+      <!-- H-bridge driver images -->
+      <h4>Dual channel H-bridge motor driver</h4>
+      <div class="image-pair">
+        <figure>
+          <img
+            src="H bridge.png"
+            alt="H-bridge layout"
+            class="project-image"
+          />
+          <figcaption>H-bridge layout</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="H bridge sch.png"
+            alt="H-bridge schematic"
+            class="project-image"
+          />
+          <figcaption>H-bridge schematic</figcaption>
+        </figure>
+      </div>
+      <!-- IR beacon images -->
+      <h4>IR beacon detection circuit (active band-pass filter)</h4>
+      <div class="image-pair">
+        <figure>
+          <img
+            src="IR beacon.png"
+            alt="IR beacon"
+            class="project-image"
+          />
+          <figcaption>IR beacon layout</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="IR beacon sch.png"
+            alt="IR beacon schematic"
+            class="project-image"
+          />
+          <figcaption>IR beacon schematic</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOODWORKING -->
+  <div id="Woodworking" class="section">
+    <div>
+      <h3>Epoxy resin table - $7500</h3>
+      <img src="Living room table.jpg" height="450" />
+    </div>
+    <div>
+      <h3>Hallway table - $3750</h3>
+      <img src="hall table 2.jpg" height="450" />
+    </div>
+    <div>
+      <h3>Bedside table - $4250</h3>
+      <img src="bedside table.jpg" height="450" />
+    </div>
+    <div>
+      <h3>Stool - $850</h3>
+      <img src="stool.jpg" height="450" />
+    </div>
+    <div>
+      <h3>Letter box - $425</h3>
+      <img src="letter box 2.jpeg" height="450" />
+      <img src="letter box.jpg" height="450" />
+    </div>
+    <div>
+      <h3>Front gate - $3000</h3>
+      <img src="front gate.jpeg" height="450" />
+    </div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      // Hide all sections
+      document.querySelectorAll(".section").forEach((section) => section.classList.remove("active"));
+      // Remove 'active' from all tabs
+      document.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("active"));
+
+      // Show the selected section
+      document.getElementById(id).classList.add("active");
+      // Add 'active' to the clicked tab
+      document.querySelector(`.tab[onclick="showSection('${id}')"]`).classList.add("active");
+    }
+  </script>
+</body>
+</html>
