@@ -30,6 +30,28 @@
       position: relative;
       z-index: 2;
     }
+    .card {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card h3 {
+        margin-top: 0;
+    }
+    .card img {
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    .card-grid {
+        display: block; /* Remove flexbox to prevent auto-sizing */
+    }
+    .card-grid img {
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+    }
     .tabs {
       display: flex;
       justify-content: center;
@@ -181,9 +203,11 @@
   <div class="banner">Benedikt Howard's Portfolio</div>
   <div class="tabs">
     <div class="tab active" onclick="showSection('About Me')">About Me</div>
-    <div class="tab" onclick="showSection('Professional Experience')">Professional Experience</div>
+    <div class="tab" onclick="showSection('RedRabbit')">Red Rabbit CO-OP</div>
+    <div class="tab" onclick="showSection('BMW')">BMW CO-OP</div>
+    <div class="tab" onclick="showSection('selfdriving')">Self Driving Competiton</div>
+    <div class="tab" onclick="showSection('Robot Summer')">Robot Summer</div>
     <div class="tab" onclick="showSection('Projects')">Projects</div>
-    <div class="tab" onclick="showSection('Class work')">Class work</div>
     <div class="tab" onclick="showSection('Woodworking')">Woodworking</div>
   </div>
 
@@ -193,7 +217,7 @@
       
       <!-- Left: Headshot & Buttons -->
       <div class="profile-section">
-        <img src="headshot.jpeg" alt="Benedikt's Headshot" class="headshot" />
+        <img src="Welcome_page/headshot.jpeg" alt="Benedikt's Headshot" class="headshot" />
         
         <div class="button-bar">
           <!-- Email button -->
@@ -223,7 +247,7 @@
 
         <!-- PDF Viewer (embedded resume) -->
         <iframe
-          src="Benedikt_Howard_Resume.pdf"
+          src="Welcome_page/Benedikt_Howard_Resume.pdf"
           class="resume-viewer"
           title="Benedikt Howard's Resume"
         ></iframe>
@@ -231,38 +255,64 @@
     </div>
   </div>
 
-  <!-- PROFESSIONAL EXPERIENCE -->
-  <div id="Professional Experience" class="section">
-    <h2>BMW - Software Engineering</h2>
-    <div class="text">
+  <!-- Red Rabbit Coop-->
+  <div id="RedRabbit" class="section">
+    <h2>Red Rabbit Robotics – Portfolio Highlights</h2>
+
+  <!-- 1 ▪ Tele-operation Redesign (7-DoF) -->
+  <article class="portfolio-item" id="teleop-redesign">
+    <h3>Advanced Tele-operation Redesign — <span class="highlight">7-DoF Legacy Manipulator</span></h3>
+    <ul>
+      <li>Re-architected operator-in-the-loop pipeline with an <strong>STM32 H7 + FreeRTOS</strong> controller running four independent UART buses.</li>
+      <li>Added real-time <strong>gravity compensation</strong> (recursive Newton–Euler), <strong>null-space regulation</strong>, and <strong>bidirectional force feedback</strong>.</li>
+      <li>Cut round-trip latency <strong>35 ms → &lt; 10 ms</strong> (-73 %) and reached a <strong>500 Hz</strong> closed-loop rate, letting the leader arm “float” while conveying contact forces back to the operator.</li>
+    </ul>
+  </article>
+
+  <!-- 2 ▪ Adaptive Control Stack (6-DoF) -->
+  <article class="portfolio-item" id="adaptive-control">
+    <h3>Adaptive Control Stack — <span class="highlight">6-DoF Next-Generation Manipulator</span></h3>
+    <ul>
+      <li>Developed a hybrid <strong>impedance + residual neural-network controller</strong> running at 500 Hz on an <strong>NVIDIA Jetson</strong>.</li>
+      <li>Trained in simulation with <strong>domain-randomised loads&nbsp;(0–10 kg)</strong>; deployment required zero manual retuning.</li>
+      <li>Achieved a <strong>40 % reduction in steady-state position error</strong> at maximum payload while preserving passivity and joint-limit compliance.</li>
+    </ul>
+  </article>
+
+  <!-- 3 ▪ Cloud Data-Acquisition Pipeline -->
+  <article class="portfolio-item" id="cloud-pipeline">
+    <h3>Cloud Data-Acquisition Pipeline for Hardware-in-the-Loop Fine-Tuning</h3>
+    <ul>
+      <li>Captured <strong>H.264 video</strong>, <strong>Draco-compressed point clouds</strong>, joint paths, and end-effector wrenches, all time-stamped via <strong>Precision Time Protocol</strong>.</li>
+      <li>Streamed encrypted packets with <strong>AWS IoT Greengrass</strong> into <strong>Amazon S3</strong>, logging ≈ 9 GB / shift with &lt; 0.02 % packet loss.</li>
+    </ul>
+  </article>
+
+  <!-- 4 ▪ Autonomous Pick-and-Place Stack -->
+  <article class="portfolio-item" id="pick-place">
+    <h3>Autonomous Pick-and-Place Stack — <span class="highlight">Grasp-Pose Estimation &amp; Trajectory Planning (6-DoF Arm)</span></h3>
+    <ul>
+      <li>Integrated <strong>Fast Grasp Network</strong> (grasp detection), a retrained <strong>Motion Planning Network</strong>, and <strong>MoveIt 2</strong> analytic refinement.</li>
+      <li>Delivered <strong>≈ 780 ms</strong> median cycle time from point-cloud capture to collision-free execution.</li>
+      <li>Verified <strong>94 % grasp success</strong> on cluttered real-world objects during eight-hour trials.</li>
+    </ul>
+  </article>
+  </div>
+
+  <!-- BMW Coop -->
+  <div id="BMW" class="section">
+    <article class="portfolio-item" id="qa-intelligence">
+      <h3>Fleet-wide Quality-Assurance Intelligence Platform</h3>
       <ul>
-        <li>
-          Designed and implemented a
-          <strong>live data-monitoring platform</strong> for the Quality Assurance
-          team, eliminating the need for massive manual searches to find vehicle
-          error patterns.
-        </li>
-        <li>
-          Achieved real-time error pattern detection in vehicle fleet by using
-          <strong>Python</strong> and <strong>Palantir</strong> ecosystem to
-          process and clean high-volume vehicle telemetry and warranty reports.
-        </li>
-        <li>
-          Automated the detection of vehicle error patterns using
-          <strong>Machine Learning algorithms</strong> (DBSCAN, Spectral-Net).
-        </li>
-        <li>
-          Fine-tuned custom ChatGPT 3.5 model using manual case reviews to
-          produce case reviews based on clustered data.
-        </li>
-        <li>
-          The platform was approved for production and adopted by 60 engineers,
-          reducing time spent on error detection by 93%.
-        </li>
+        <li>Replaced manual data hunts by building an <strong>end-to-end monitoring stack</strong> on the <strong>Palantir Foundry</strong> platform with Python micro-services and real-time Spark streams.</li>
+        <li><strong>Ingested &amp; fused 10 million+</strong> telemetry messages, diagnostic codes, and warranty notes into a unified event schema.</li>
+        <li>Auto-clustered emerging fault signatures using <strong>DBSCAN</strong> and <strong>Spectral-Net</strong>, adapting seamlessly to new vehicle models.</li>
+        <li><strong>Fine-tuned GPT-3.5</strong> on 6 000 expert case reviews—now drafts first-pass QA reports for each cluster in seconds.</li>
+        <li>Adopted by <strong>60 QA engineers</strong>; reduced fault-triage time by <strong>≈ 40 %</strong> and surfaced cross-model issues within hours.</li>
       </ul>
-    </div>
+    </article>
     <img
-      src="BMW_internship.png"
+      src="BMW/BMW_internship.png"
       alt="Internship product flow chart"
       height="650"
     />
@@ -270,8 +320,18 @@
 
   <!-- PROJECTS -->
   <div id="Projects" class="section">
-    <h3>Trading Algorithm</h3>
-    currently in progress
+    <h3>Biped push recovery</h3>
+    <div class="text">
+      <ul>
+        <li>Trained a <strong>Proximal Policy Optimisation</strong> network to output joint torques at a 1 kHz simulation rate.</li>
+        <li>Used <strong>Automatic Domain Randomisation</strong> (mass, CoM offset, latency, friction) for robustness.</li>
+        <li>Injected <strong>high-entropy arm motions</strong> so the agent learns momentum-cancelling swings.</li>
+        <li>Cut simulated fall-rate by <strong>32 %</strong> for 50 – 75 N pushes versus a baseline policy.</li>
+        <li>Expanded the stable-recovery envelope from <strong>14 cm → 22 cm</strong> centre-of-mass displacement.</li>
+      </ul>
+
+      <img src="Projects/robot_recovery.gif">
+    </div>
     <h3>Alarm clock</h3>
     <div class="text">
       <ul>
@@ -286,61 +346,60 @@
         </li>
       </ul>
     </div>
-    <p>pictures coming soon</p>
+    
     <h3>UBC Formula Electric Battery Modeling</h3>
     <ul>
+      
       <li>
         Designed and validated custom PCB for the Battery Management module.
-        Wrote firmware on embedded devices (NXP) for data collection, cell
+        Wrote firmware on embedded devices for data collection, cell
         balancing, and real-time state of charge (SOC) estimation.
       </li>
       <li>
         Used collected data to model Li-Po cell discharge behavior and improve
         the SOC estimation algorithm by >40% accuracy.
       </li>
+      <li>
+        Designed a PCB to validate firmware and test cells
+        <img src="Projects/FE_board.JPG">
+      </li>
+      
     </ul>
-    <img src="FE_board.JPG" height="450" />
   </div>
 
-  <!-- CLASS WORK -->
-  <div id="Class work" class="section">
-    <h3>ENPH 353 - Autonomous driving</h3>
-    much more coming soon
-    <div class="text">
-      <img src="SIFTFLANN.png">
-    </div>
-    <div class="image-pair">
-    <figure>
-        <img
-        src="IntermediateLineFollow.gif"
-        class="project-image"
-        />
-        <figcaption>world view</figcaption>
-    </figure>
-    <figure>
-        <img
-        src="SimpleLineFollow.gif"
-        class="project-image"
-        />
-        <figcaption>robot view</figcaption>
-    </figure>
-    </div>
+  <!-- Robot summer -->
+  <div id="Robot Summer" class="section">
     
     <h3>ENPH 253 - Robot Summer</h3>
     <div class="project-container">
       <!-- Robot image and video row -->
-      <div class="single-row">
-        <img src="robot.jpg" alt="Robot" class="project-image" />
-        <video controls class="project-video">
-          <source src="robot_vid.mp4" type="video/mp4" />
-        </video>
+      <ul>
+        <li>Built a <strong>22-degree-of-freedom robot</strong> that "grills", assembles, and plates hamburgers without human intervention.</li>
+        <li>Designed and fabricated custom PCBs: <strong>H-bridge direct-current motor driver</strong>, <strong>infrared-beacon band-pass filter + Schmitt trigger</strong>, and a main motherboard hosting <strong>two ESP32 series and one STM-series.</li>
+        <li>Wrote <strong>FreeRTOS-based firmware</strong> orchestrating the drivetrain, 40 + sensors and actuators, and real-time infrared detection.</li>
+        <li>Implemented a <strong>WebSocket interface</strong> on the ESP32-S3 for live debugging, data logging, and calibration.</li>
+        <li>Engineered a compact <strong>mecanum-wheel drivetrain</strong> and a <strong>16 N·m worm-gear to turn the crane</strong> from 1 mm bent aluminium.</li>
+        <li>Developed a <strong>bare-metal computer-vision algorithm</strong> on the ESP32-CAM to detect buns, patties, and toppings under changing lighting conditions.</li>
+      </ul>
+      <div class="image-pair">
+        <figure>
+          <img src="robot_summer/robot.jpg" alt="Robot" class="project-image" />
+          <figcaption>Final assembled robot</figcaption>
+        </figure>
+        <figure>
+          <video controls class="project-video" height=>
+            <source src="robot_summer/robot_vid.mov" type="video/mp4" />
+          </video>
+          <figcaption>Robot testing</figcaption>
+        </figure>
+        
       </div>
       <!-- Main motherboard images -->
       <h4>Robot's main motherboard</h4>
       <div class="image-pair">
         <figure>
           <img
-            src="main motherboard.png"
+            src="robot_summer/main motherboard.png"
             alt="Main motherboard"
             class="project-image"
           />
@@ -348,7 +407,7 @@
         </figure>
         <figure>
           <img
-            src="main motherboad sch.png"
+            src="robot_summer/main motherboad sch.png"
             alt="Main motherboard schematic"
             class="project-image"
           />
@@ -360,7 +419,7 @@
       <div class="image-pair">
         <figure>
           <img
-            src="H bridge.png"
+            src="robot_summer/H bridge.png"
             alt="H-bridge layout"
             class="project-image"
           />
@@ -368,7 +427,7 @@
         </figure>
         <figure>
           <img
-            src="H bridge sch.png"
+            src="robot_summer/H bridge sch.png"
             alt="H-bridge schematic"
             class="project-image"
           />
@@ -380,7 +439,7 @@
       <div class="image-pair">
         <figure>
           <img
-            src="IR beacon.png"
+            src="robot_summer/IR beacon.png"
             alt="IR beacon"
             class="project-image"
           />
@@ -388,7 +447,7 @@
         </figure>
         <figure>
           <img
-            src="IR beacon sch.png"
+            src="robot_summer/IR beacon sch.png"
             alt="IR beacon schematic"
             class="project-image"
           />
@@ -402,31 +461,64 @@
   <div id="Woodworking" class="section">
     <div>
       <h3>Epoxy resin table - $7500</h3>
-      <img src="Living room table.jpg" height="450" />
+      <img src="Woodworking/Living room table.jpg" height="450" />
     </div>
     <div>
       <h3>Hallway table - $3750</h3>
-      <img src="hall table 2.jpg" height="450" />
+      <img src="Woodworking/hall table 2.jpg" height="450" />
     </div>
     <div>
       <h3>Bedside table - $4250</h3>
-      <img src="bedside table.jpg" height="450" />
+      <img src="Woodworking/bedside table.jpg" height="450" />
     </div>
     <div>
       <h3>Stool - $850</h3>
-      <img src="stool.jpg" height="450" />
+      <img src="Woodworking/stool.jpg" height="450" />
     </div>
     <div>
       <h3>Letter box - $425</h3>
-      <img src="letter box 2.jpeg" height="450" />
-      <img src="letter box.jpg" height="450" />
+      <img src="Woodworking/letter box 2.jpeg" height="450" />
+      <img src="Woodworking/letter box.jpg" height="450" />
     </div>
     <div>
       <h3>Front gate - $3000</h3>
-      <img src="front gate.jpeg" height="450" />
+      <img src="Woodworking/front gate.jpeg" height="450" />
     </div>
   </div>
 
+  <!-- ENPH 353-->
+  <div id="selfdriving" class="section">
+    <h2>Self-Driving Robot</h2>
+
+    <p>Course link: <a href="https://projectlab.engphys.ubc.ca/enph-353/" target="_blank">ENPH 353 Project Lab</a></p>
+
+    <h2>Self-Driving Car Competition — <span class="highlight">1st Place</span></h2>
+
+    <article class="portfolio-item" id="sd-overview">
+      <h3>End-to-End Autonomous Navigation Stack</h3>
+      <ul>
+        <li>Built a <strong>modular ROS 1 + Gazebo</strong> architecture with dedicated nodes for control, perception, sign reading, and telemetry.</li>
+        <li>Trained <strong>four section-specific CNN pilots</strong> (Road, Gravel, Ramp, Off-Road) on <strong>100 k+ joystick-labeled images</strong> collected via a custom ESP32/joystick data-engine at 20 Hz.</li>
+        <li>Finished the full obstacle & sign course in <strong>87 s, zero collisions</strong>, fastest of all teams.</li>
+        <li>Implemented robust obstacle logic: motion-based pedestrian detection, rule-driven truck & Baby Yoda avoidance, and pink-line section transitions.</li>
+        <li>Deployed a <strong>TFLite sign-reader</strong> (HSV mask → SIFT homography → CNN) with <strong>0.0018 s inference & ≈ 99.9 % accuracy</strong> across 50 test runs.</li>
+        <li>Consensus voting across multiple drive-bys eliminated single-frame errors, enabling perfect sign decoding during competition.</li>
+        <li>Stack demonstrated <strong>20+ consecutive fault-free runs</strong>; CNN outputs smoothed by safety wrappers to prevent low-speed creeping.</li>
+      </ul>
+    </article>
+      <div class="card-grid">
+          <img src="enph_353/PlayingArena.png" alt="RL" width="500" height="300">
+          <img src="enph_353/compoverview.png" alt="RL" width="500" height="300">
+      </div>
+
+
+    <iframe
+          src="enph_353/ENPH_353_Final_Report_Team_4.pdf"
+          class="resume-viewer"
+          title="Benedikt Howard's Resume"
+    ></iframe>
+
+  </div>
   <script>
     function showSection(id) {
       // Hide all sections
