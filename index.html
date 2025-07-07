@@ -1,536 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benedikt Howard's Portfolio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    /* Global styling */
+    :root {
+      --primary-color: #1f2937;
+      --accent-color: #4b5563;
+      --bg-color: #f9fafb;
+      --text-color: #111827;
+      --max-width: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
     }
-    /* Make images and videos responsive by default */
-    img,
-    video {
-      max-width: 70%;
-      height: auto;
-      display: block;
+    header {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 1rem;
     }
-    .banner {
-      background: url("vancouver banner.jpg") no-repeat center center;
-      background-size: cover;
-      color: white;
-      text-align: left;
-      padding: 25px;
-      font-size: 24px;
-      position: relative;
-      z-index: 2;
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .card {
-        background: white;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .card h3 {
-        margin-top: 0;
-    }
-    .card img {
-        border-radius: 5px;
-        margin-top: 10px;
-    }
-    .card-grid {
-        display: block; /* Remove flexbox to prevent auto-sizing */
-    }
-    .card-grid img {
-        display: inline-block;
-        vertical-align: top;
-        margin: 5px;
+    header h1 {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
     }
     .tabs {
       display: flex;
-      justify-content: center;
-      background-color: #555;
-      position: sticky;
-      top: 0;
-      z-index: 1;
+      background-color: #fff;
+      border-bottom: 2px solid var(--primary-color);
     }
-    .tab {
-      padding: 15px 30px;
+    .tabs button {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 1rem;
       cursor: pointer;
-      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      color: var(--primary-color);
+      transition: background 0.3s;
     }
-    .tab:hover,
-    .tab.active {
-      background-color: #777;
+    .tabs button.active {
+      border-bottom: 4px solid var(--accent-color);
+      font-weight: 500;
     }
-    .section {
-      padding: 50px;
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+    }
+    section {
       display: none;
+      background: #fff;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      text-align: left;
     }
-    .section.active {
+    section.active {
       display: block;
     }
-    .container {
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      margin: 0;
+      margin-right: 0.5rem;
+      color: var(--primary-color);
+    }
+    .divider {
+      flex-grow: 1;
+      height: 2px;
+      background-color: var(--accent-color);
+      border: none;
+    }
+    /* Text alignment */
+    p, ul, li, h3, h4 { text-align: left; }
+    figcaption { text-align: center; }
+    /* Profile */
+    .profile-section {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
+      gap: 2rem;
+      align-items: flex-start;
     }
-    .text {
-      flex: 1 1 50%;
-      min-width: 300px;
-    }
-
-    /* --------------------------------
-      ABOUT ME STYLING (Updated Layout)
-    -------------------------------- */
-    #About\ Me .about-container {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;  /* Align items at the top edge */
-      justify-content: center;
-      gap: 30px;
-      max-width: 1000px;
-      margin: 0 auto; /* Center the container horizontally */
-    }
-
-    /* Left column with headshot + buttons */
-    .profile-section {
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* Left-align the content */
-      gap: 20px;
-    }
-
-    .headshot {
+    .profile-section img {
       width: 200px;
       height: 200px;
-      object-fit: cover;
       border-radius: 50%;
+      object-fit: cover;
       display: block;
+      margin: 0 auto;
     }
-
+    .profile-info {
+      flex: 1;
+      min-width: 280px;
+    }
+    .profile-info h3 {
+      margin-top: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary-color);
+    }
     .button-bar {
+      margin-top: 1rem;
       display: flex;
-      gap: 15px;
+      gap: 1rem;
       flex-wrap: wrap;
     }
     .button-bar button {
-      padding: 10px 20px;
-      cursor: pointer;
+      background-color: var(--primary-color);
+      color: #fff;
       border: none;
+      padding: 0.75rem 1.25rem;
       border-radius: 4px;
-      background-color: #555;
-      color: white;
-      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
     }
     .button-bar button:hover {
-      background-color: #777;
+      background-color: var(--accent-color);
     }
     .location {
       font-style: italic;
+      color: #6b7280;
+      margin-top: 0.5rem;
     }
-
-    /* Right column with bio + PDF viewer */
-    .bio-section {
-      flex: 1 1 0; /* let this grow/shrink as needed */
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
     .resume-viewer {
       width: 100%;
-      height: 600px; /* Adjust as needed */
-      border: 1px solid #ccc;
+      height: 600px;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-top: 1.5rem;
     }
-
-    /* -----------------------------------
-       Additional styling for "Class work"
-       (We must escape spaces in IDs in CSS.)
-       ----------------------------------- */
-    #Class\ work .project-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px; /* space between subsections (motherboard, H-bridge, etc.) */
-      margin-top: 20px;
+    /* Media sizing and centering */
+    main img,
+    main video {
+      max-height: 400px;
+      width: auto;
+      display: block;
+      margin: 0.75rem auto;
     }
-    /* A row with an image and a video side by side */
-    #Class\ work .single-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+    .project-image, .project-video, .card-grid img {
+      /* just in case these classes are applied */
+      max-height: 400px;
+      width: auto;
+      display: block;
+      margin: 0.75rem auto;
     }
-    /* For pairs of images side by side */
+    /* Portfolio items */
+    .portfolio-item {
+      margin-bottom: 1.5rem;
+    }
+    .portfolio-item h3 {
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      color: var(--primary-color);
+    }
+    .highlight {
+      color: var(--text-color);
+    }
+    .card-grid,
+    .project-container,
     .image-pair {
       display: flex;
       flex-wrap: wrap;
+      gap: 1.5rem;
       justify-content: center;
-      gap: 20px;
-    }
-    /* Figure + figcaption styling (optional) */
-    figure {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0; /* remove default margins */
-    }
-    figcaption {
-      margin-top: 8px;
-      font-style: italic;
-      text-align: center;
-    }
-    /* Utility classes for images/videos in Class work */
-    .project-image {
-      max-width: 400px; /* set a comfortable max width */
-    }
-    .project-video {
-      max-width: 400px; /* same for video, or any size you prefer */
     }
   </style>
 </head>
 <body>
-  <div class="banner">Benedikt Howard's Portfolio</div>
+  <header>
+    <div class="container">
+      <h1>Benedikt Howard's Portfolio</h1>
+    </div>
+  </header>
+
   <div class="tabs">
-    <div class="tab active" onclick="showSection('About Me')">About Me</div>
-    <div class="tab" onclick="showSection('RedRabbit')">Red Rabbit CO-OP</div>
-    <div class="tab" onclick="showSection('BMW')">BMW CO-OP</div>
-    <div class="tab" onclick="showSection('selfdriving')">Self Driving Competiton</div>
-    <div class="tab" onclick="showSection('Robot Summer')">Robot Summer</div>
-    <div class="tab" onclick="showSection('Projects')">Projects</div>
-    <div class="tab" onclick="showSection('Woodworking')">Woodworking</div>
+    <button class="active" data-target="AboutMe">About Me</button>
+    <button data-target="RedRabbit">Red Rabbit CO-OP</button>
+    <button data-target="BMW">BMW CO-OP</button>
+    <button data-target="selfdriving">Self-Driving</button>
+    <button data-target="RobotSummer">Burger Cooking Robot</button>
+    <button data-target="Projects">Projects</button>
+    <button data-target="Woodworking">Woodworking</button>
   </div>
 
-  <!-- ABOUT ME (Default/Active tab) -->
-  <div id="About Me" class="section active">
-    <div class="about-container">
-      
-      <!-- Left: Headshot & Buttons -->
+  <main>
+    <!-- About Me -->
+    <section id="AboutMe" class="active">
+      <div class="section-header">
+        <h2>About Me</h2><hr class="divider"/>
+      </div>
       <div class="profile-section">
-        <img src="Welcome_page/headshot.jpeg" alt="Benedikt's Headshot" class="headshot" />
-        
-        <div class="button-bar">
-          <!-- Email button -->
-          <button onclick="window.location.href='mailto:benedikthoward@gmail.com'">
-            Email Me
-          </button>
-          <!-- LinkedIn button -->
-          <button onclick="window.open('https://www.linkedin.com/in/benedikt-howard-256939255/', '_blank')">
-            LinkedIn
-          </button>
+        <img src="Welcome_page/headshot.jpeg" alt="Benedikt's Headshot">
+        <div class="profile-info">
+          <h3>Short Bio</h3>
+          <p>
+            I am a technology enthusiast with a deep passion for robotics,
+            autonomous systems, and artificial intelligence. I also maintain
+            a keen interest in finance and venture capital, exploring how
+            innovative solutions can transform both the technological and
+            business landscapes.
+          </p>
+          <div class="button-bar">
+            <button onclick="location.href='mailto:benedikthoward@gmail.com'">
+              <i class="fas fa-envelope"></i> Email Me
+            </button>
+            <button onclick="window.open('https://www.linkedin.com/in/benedikt-howard-256939255/','_blank')">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </button>
+          </div>
+          <p class="location">Vancouver, Canada</p>
         </div>
-        
-        <!-- Location -->
-        <p class="location">Vancouver, Canada</p>
       </div>
-      
-      <!-- Right: Short Bio + Resume Viewer -->
-      <div class="bio-section">
-        <h3>Short Bio</h3>
-        <p>
-          I am a technology enthusiast with a deep passion for robotics,
-             autonomous systems, and artificial intelligence. I also maintain 
-             a keen interest in finance and venture capital, exploring how
-              innovative solutions can transform both the technological and
-               business landscapes.
-        </p>
+      <iframe
+        src="Welcome_page/Benedikt_Howard_Resume.pdf"
+        class="resume-viewer"
+        title="Benedikt Howard's Resume">
+      </iframe>
+    </section>
 
-        <!-- PDF Viewer (embedded resume) -->
-        <iframe
-          src="Welcome_page/Benedikt_Howard_Resume.pdf"
-          class="resume-viewer"
-          title="Benedikt Howard's Resume"
-        ></iframe>
+    <!-- Red Rabbit CO-OP -->
+    <section id="RedRabbit">
+      <div class="section-header">
+        <h2>Red Rabbit Robotics – Portfolio Highlights</h2><hr class="divider"/>
       </div>
-    </div>
-  </div>
+      <article class="portfolio-item" id="teleop-redesign">
+        <h3>Advanced Tele-operation Redesign — <span class="highlight">7-DoF Legacy Manipulator</span></h3>
+        <ul>
+          <li>Re-architected operator-in-the-loop pipeline with an <strong>STM32 H7 + FreeRTOS</strong> controller running four independent UART buses.</li>
+          <li>Added real-time <strong>gravity compensation</strong>, <strong>null-space regulation</strong>, and <strong>bidirectional force feedback</strong>.</li>
+          <li>Cut round-trip latency <strong>35 ms → &lt; 10 ms</strong> and reached a <strong>500 Hz</strong> closed-loop rate.</li>
+        </ul>
+      </article>
+      <article class="portfolio-item" id="adaptive-control">
+        <h3>Adaptive Control Stack — <span class="highlight">6-DoF Next-Generation Manipulator</span></h3>
+        <ul>
+          <li>Developed a hybrid <strong>impedance + residual neural-network controller</strong> running at 500 Hz on an <strong>NVIDIA Jetson</strong>.</li>
+          <li>Trained in simulation with <strong>domain-randomised loads&nbsp;(0–10 kg)</strong>; deployment required zero manual retuning.</li>
+          <li>Achieved a <strong>40 % reduction in steady-state position error</strong> at maximum payload while preserving passivity and joint-limit compliance.</li>
+        </ul>
+      </article>
+      <article class="portfolio-item" id="cloud-pipeline">
+        <h3>Cloud Data-Acquisition Pipeline for Hardware-in-the-Loop Fine-Tuning</h3>
+        <ul>
+          <li>Captured <strong>H.264 video</strong>, <strong>Draco-compressed point clouds</strong>, joint paths, and end-effector wrenches, all time-stamped via <strong>Precision Time Protocol</strong>.</li>
+          <li>Streamed encrypted packets with <strong>AWS IoT Greengrass</strong> into <strong>Amazon S3</strong>, logging ≈ 9 GB / shift with &lt; 0.02 % packet loss.</li>
+        </ul>
+      </article>
+      <article class="portfolio-item" id="pick-place">
+        <h3>Autonomous Pick-and-Place Stack — <span class="highlight">Grasp-Pose Estimation &amp; Trajectory Planning (6-DoF Arm)</span></h3>
+        <ul>
+          <li>Integrated <strong>Fast Grasp Network</strong>, a retrained <strong>Motion Planning Network</strong>, and <strong>MoveIt 2</strong> analytic refinement.</li>
+          <li>Delivered <strong>≈ 780 ms</strong> median cycle time from point-cloud capture to collision-free execution.</li>
+          <li>Verified <strong>94 % grasp success</strong> on cluttered real-world objects during eight-hour trials.</li>
+        </ul>
+      </article>
+    </section>
 
-  <!-- Red Rabbit Coop-->
-  <div id="RedRabbit" class="section">
-    <h2>Red Rabbit Robotics – Portfolio Highlights</h2>
+    <!-- BMW CO-OP -->
+    <section id="BMW">
+      <div class="section-header">
+        <h2>BMW CO-OP</h2><hr class="divider"/>
+      </div>
+      <article class="portfolio-item" id="qa-intelligence">
+        <h3>Fleet-wide Quality-Assurance Intelligence Platform</h3>
+        <ul>
+          <li>Replaced manual data hunts by building an <strong>end-to-end monitoring stack</strong> on the <strong>Palantir Foundry</strong> platform with Python micro-services and real-time Spark streams.</li>
+          <li><strong>Ingested &amp; fused 10 million+</strong> telemetry messages, diagnostic codes, and warranty notes into a unified event schema.</li>
+          <li>Auto-clustered emerging fault signatures using <strong>DBSCAN</strong> and <strong>Spectral-Net</strong>, adapting seamlessly to new vehicle models.</li>
+          <li><strong>Fine-tuned GPT-3.5</strong> on 6 000 expert case reviews—now drafts first-pass QA reports in seconds.</li>
+          <li>Adopted by <strong>60 QA engineers</strong>; reduced fault-triage time by <strong>≈ 40 %</strong> and surfaced cross-model issues within hours.</li>
+        </ul>
+      </article>
+      <img src="BMW/BMW_internship.png" alt="Internship product flow chart">
+    </section>
 
-  <!-- 1 ▪ Tele-operation Redesign (7-DoF) -->
-  <article class="portfolio-item" id="teleop-redesign">
-    <h3>Advanced Tele-operation Redesign — <span class="highlight">7-DoF Legacy Manipulator</span></h3>
-    <ul>
-      <li>Re-architected operator-in-the-loop pipeline with an <strong>STM32 H7 + FreeRTOS</strong> controller running four independent UART buses.</li>
-      <li>Added real-time <strong>gravity compensation</strong> (recursive Newton–Euler), <strong>null-space regulation</strong>, and <strong>bidirectional force feedback</strong>.</li>
-      <li>Cut round-trip latency <strong>35 ms → &lt; 10 ms</strong> (-73 %) and reached a <strong>500 Hz</strong> closed-loop rate, letting the leader arm “float” while conveying contact forces back to the operator.</li>
-    </ul>
-  </article>
+    <!-- Self-Driving -->
+    <section id="selfdriving">
+      <div class="section-header">
+        <h2>Self-Driving Car Competition — <span class="highlight">1st Place</span></h2><hr class="divider"/>
+      </div>
+      <article class="portfolio-item" id="sd-overview">
+        <h3>End-to-End Autonomous Navigation Stack</h3>
+        <ul>
+          <li>Built a <strong>modular ROS 1 + Gazebo</strong> architecture with dedicated nodes for control, perception, sign reading, and telemetry.</li>
+          <li>Trained <strong>four section-specific CNN pilots</strong> (Road, Gravel, Ramp, Off-Road) on <strong>100 k+ joystick-labeled images</strong> collected via a custom ESP32/joystick data-engine at 20 Hz.</li>
+          <li>Finished the full obstacle & sign course in <strong>87 s, zero collisions</strong>, fastest of all teams.</li>
+          <li>Implemented robust obstacle logic: motion-based pedestrian detection, rule-driven truck & Baby Yoda avoidance, and pink-line section transitions.</li>
+          <li>Deployed a <strong>TFLite sign-reader</strong> (HSV mask → SIFT homography → CNN) with <strong>0.0018 s inference & ≈ 99.9 %</strong> accuracy across 50 runs.</li>
+          <li>Consensus voting across multiple drive-bys eliminated single-frame errors for perfect sign decoding.</li>
+          <li>Stack demonstrated <strong>20+ consecutive fault-free runs</strong>; CNN outputs smoothed by safety wrappers to prevent low-speed creeping.</li>
+        </ul>
+      </article>
+      <div class="card-grid">
+        <img src="enph_353/PlayingArena.png" alt="Playing Arena">
+        <img src="enph_353/compoverview.png" alt="Competition overview">
+      </div>
+      <iframe
+        src="enph_353/ENPH_353_Final_Report_Team_4.pdf"
+        class="resume-viewer"
+        title="ENPH 353 Final Report">
+      </iframe>
+    </section>
 
-  <!-- 2 ▪ Adaptive Control Stack (6-DoF) -->
-  <article class="portfolio-item" id="adaptive-control">
-    <h3>Adaptive Control Stack — <span class="highlight">6-DoF Next-Generation Manipulator</span></h3>
-    <ul>
-      <li>Developed a hybrid <strong>impedance + residual neural-network controller</strong> running at 500 Hz on an <strong>NVIDIA Jetson</strong>.</li>
-      <li>Trained in simulation with <strong>domain-randomised loads&nbsp;(0–10 kg)</strong>; deployment required zero manual retuning.</li>
-      <li>Achieved a <strong>40 % reduction in steady-state position error</strong> at maximum payload while preserving passivity and joint-limit compliance.</li>
-    </ul>
-  </article>
-
-  <!-- 3 ▪ Cloud Data-Acquisition Pipeline -->
-  <article class="portfolio-item" id="cloud-pipeline">
-    <h3>Cloud Data-Acquisition Pipeline for Hardware-in-the-Loop Fine-Tuning</h3>
-    <ul>
-      <li>Captured <strong>H.264 video</strong>, <strong>Draco-compressed point clouds</strong>, joint paths, and end-effector wrenches, all time-stamped via <strong>Precision Time Protocol</strong>.</li>
-      <li>Streamed encrypted packets with <strong>AWS IoT Greengrass</strong> into <strong>Amazon S3</strong>, logging ≈ 9 GB / shift with &lt; 0.02 % packet loss.</li>
-    </ul>
-  </article>
-
-  <!-- 4 ▪ Autonomous Pick-and-Place Stack -->
-  <article class="portfolio-item" id="pick-place">
-    <h3>Autonomous Pick-and-Place Stack — <span class="highlight">Grasp-Pose Estimation &amp; Trajectory Planning (6-DoF Arm)</span></h3>
-    <ul>
-      <li>Integrated <strong>Fast Grasp Network</strong> (grasp detection), a retrained <strong>Motion Planning Network</strong>, and <strong>MoveIt 2</strong> analytic refinement.</li>
-      <li>Delivered <strong>≈ 780 ms</strong> median cycle time from point-cloud capture to collision-free execution.</li>
-      <li>Verified <strong>94 % grasp success</strong> on cluttered real-world objects during eight-hour trials.</li>
-    </ul>
-  </article>
-  </div>
-
-  <!-- BMW Coop -->
-  <div id="BMW" class="section">
-    <article class="portfolio-item" id="qa-intelligence">
-      <h3>Fleet-wide Quality-Assurance Intelligence Platform</h3>
+    <!-- Robot Summer -->
+    <section id="RobotSummer">
+      <div class="section-header">
+        <h2>Robot Summer (ENPH 253)</h2><hr class="divider"/>
+      </div>
       <ul>
-        <li>Replaced manual data hunts by building an <strong>end-to-end monitoring stack</strong> on the <strong>Palantir Foundry</strong> platform with Python micro-services and real-time Spark streams.</li>
-        <li><strong>Ingested &amp; fused 10 million+</strong> telemetry messages, diagnostic codes, and warranty notes into a unified event schema.</li>
-        <li>Auto-clustered emerging fault signatures using <strong>DBSCAN</strong> and <strong>Spectral-Net</strong>, adapting seamlessly to new vehicle models.</li>
-        <li><strong>Fine-tuned GPT-3.5</strong> on 6 000 expert case reviews—now drafts first-pass QA reports for each cluster in seconds.</li>
-        <li>Adopted by <strong>60 QA engineers</strong>; reduced fault-triage time by <strong>≈ 40 %</strong> and surfaced cross-model issues within hours.</li>
-      </ul>
-    </article>
-    <img
-      src="BMW/BMW_internship.png"
-      alt="Internship product flow chart"
-      height="650"
-    />
-  </div>
-
-  <!-- PROJECTS -->
-  <div id="Projects" class="section">
-    <h3>Biped push recovery</h3>
-    <div class="text">
-      <ul>
-        <li>Trained a <strong>Proximal Policy Optimisation</strong> network to output joint torques at a 1 kHz simulation rate.</li>
-        <li>Used <strong>Automatic Domain Randomisation</strong> (mass, CoM offset, latency, friction) for robustness.</li>
-        <li>Injected <strong>high-entropy arm motions</strong> so the agent learns momentum-cancelling swings.</li>
-        <li>Cut simulated fall-rate by <strong>32 %</strong> for 50 – 75 N pushes versus a baseline policy.</li>
-        <li>Expanded the stable-recovery envelope from <strong>14 cm → 22 cm</strong> centre-of-mass displacement.</li>
-      </ul>
-
-      <img src="Projects/robot_recovery.gif">
-    </div>
-    <h3>Alarm clock</h3>
-    <div class="text">
-      <ul>
-        <li>Used an ESP32 S3 to build an alarm clock.</li>
-        <li>
-          The alarm sound is a daily news brief from Reuters. I wrote a custom
-          text-to-speech port for the ESP.
-        </li>
-        <li>
-          During the day, the OLED screen displays the time along with live
-          stock market information.
-        </li>
-      </ul>
-    </div>
-    
-    <h3>UBC Formula Electric Battery Modeling</h3>
-    <ul>
-      
-      <li>
-        Designed and validated custom PCB for the Battery Management module.
-        Wrote firmware on embedded devices for data collection, cell
-        balancing, and real-time state of charge (SOC) estimation.
-      </li>
-      <li>
-        Used collected data to model Li-Po cell discharge behavior and improve
-        the SOC estimation algorithm by >40% accuracy.
-      </li>
-      <li>
-        Designed a PCB to validate firmware and test cells
-        <img src="Projects/FE_board.JPG">
-      </li>
-      
-    </ul>
-  </div>
-
-  <!-- Robot summer -->
-  <div id="Robot Summer" class="section">
-    
-    <h3>ENPH 253 - Robot Summer</h3>
-    <div class="project-container">
-      <!-- Robot image and video row -->
-      <ul>
-        <li>Built a <strong>22-degree-of-freedom robot</strong> that "grills", assembles, and plates hamburgers without human intervention.</li>
-        <li>Designed and fabricated custom PCBs: <strong>H-bridge direct-current motor driver</strong>, <strong>infrared-beacon band-pass filter + Schmitt trigger</strong>, and a main motherboard hosting <strong>two ESP32 series and one STM-series.</li>
-        <li>Wrote <strong>FreeRTOS-based firmware</strong> orchestrating the drivetrain, 40 + sensors and actuators, and real-time infrared detection.</li>
+        <li>Built a <strong>22-degree-of-freedom robot</strong> that “grills,” assembles, and plates hamburgers without human intervention.</li>
+        <li>Designed and fabricated custom PCBs: <strong>H-bridge DC motor driver</strong>, <strong>IR-beacon band-pass filter + Schmitt trigger</strong>, and a main motherboard hosting two ESP32s + one STM-series.</li>
+        <li>Wrote <strong>FreeRTOS-based firmware</strong> orchestrating the drivetrain, 40+ sensors/actuators, and real-time IR detection.</li>
         <li>Implemented a <strong>WebSocket interface</strong> on the ESP32-S3 for live debugging, data logging, and calibration.</li>
-        <li>Engineered a compact <strong>mecanum-wheel drivetrain</strong> and a <strong>16 N·m worm-gear to turn the crane</strong> from 1 mm bent aluminium.</li>
-        <li>Developed a <strong>bare-metal computer-vision algorithm</strong> on the ESP32-CAM to detect buns, patties, and toppings under changing lighting conditions.</li>
+        <li>Engineered a compact <strong>mecanum-wheel drivetrain</strong> and a <strong>16 N·m worm-gear</strong> from 1 mm bent aluminium.</li>
+        <li>Developed a <strong>bare-metal CV algorithm</strong> on the ESP32-CAM to detect buns, patties, and toppings under changing lighting.</li>
       </ul>
       <div class="image-pair">
         <figure>
-          <img src="robot_summer/robot.jpg" alt="Robot" class="project-image" />
+          <img src="robot_summer/robot.jpg" alt="Final assembled robot" class="project-image">
           <figcaption>Final assembled robot</figcaption>
         </figure>
         <figure>
-          <video controls class="project-video" height=>
-            <source src="robot_summer/robot_vid.mov" type="video/mp4" />
+          <video controls class="project-video">
+            <source src="robot_summer/robot_vid.mov" type="video/mp4">
           </video>
           <figcaption>Robot testing</figcaption>
         </figure>
-        
       </div>
-      <!-- Main motherboard images -->
       <h4>Robot's main motherboard</h4>
       <div class="image-pair">
         <figure>
-          <img
-            src="robot_summer/main motherboard.png"
-            alt="Main motherboard"
-            class="project-image"
-          />
+          <img src="robot_summer/main motherboard.png" alt="Main motherboard" class="project-image">
           <figcaption>Main motherboard (top view)</figcaption>
         </figure>
         <figure>
-          <img
-            src="robot_summer/main motherboad sch.png"
-            alt="Main motherboard schematic"
-            class="project-image"
-          />
+          <img src="robot_summer/main motherboad sch.png" alt="Main motherboard schematic" class="project-image">
           <figcaption>Main motherboard schematic</figcaption>
         </figure>
       </div>
-      <!-- H-bridge driver images -->
       <h4>Dual channel H-bridge motor driver</h4>
       <div class="image-pair">
         <figure>
-          <img
-            src="robot_summer/H bridge.png"
-            alt="H-bridge layout"
-            class="project-image"
-          />
+          <img src="robot_summer/H bridge.png" alt="H-bridge layout" class="project-image">
           <figcaption>H-bridge layout</figcaption>
         </figure>
         <figure>
-          <img
-            src="robot_summer/H bridge sch.png"
-            alt="H-bridge schematic"
-            class="project-image"
-          />
+          <img src="robot_summer/H bridge sch.png" alt="H-bridge schematic" class="project-image">
           <figcaption>H-bridge schematic</figcaption>
         </figure>
       </div>
-      <!-- IR beacon images -->
-      <h4>IR beacon detection circuit (active band-pass filter)</h4>
+      <h4>IR beacon detection circuit</h4>
       <div class="image-pair">
         <figure>
-          <img
-            src="robot_summer/IR beacon.png"
-            alt="IR beacon"
-            class="project-image"
-          />
+          <img src="robot_summer/IR beacon.png" alt="IR beacon layout" class="project-image">
           <figcaption>IR beacon layout</figcaption>
         </figure>
         <figure>
-          <img
-            src="robot_summer/IR beacon sch.png"
-            alt="IR beacon schematic"
-            class="project-image"
-          />
+          <img src="robot_summer/IR beacon sch.png" alt="IR beacon schematic" class="project-image">
           <figcaption>IR beacon schematic</figcaption>
         </figure>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- WOODWORKING -->
-  <div id="Woodworking" class="section">
-    <div>
-      <h3>Epoxy resin table - $7500</h3>
-      <img src="Woodworking/Living room table.jpg" height="450" />
-    </div>
-    <div>
-      <h3>Hallway table - $3750</h3>
-      <img src="Woodworking/hall table 2.jpg" height="450" />
-    </div>
-    <div>
-      <h3>Bedside table - $4250</h3>
-      <img src="Woodworking/bedside table.jpg" height="450" />
-    </div>
-    <div>
-      <h3>Stool - $850</h3>
-      <img src="Woodworking/stool.jpg" height="450" />
-    </div>
-    <div>
-      <h3>Letter box - $425</h3>
-      <img src="Woodworking/letter box 2.jpeg" height="450" />
-      <img src="Woodworking/letter box.jpg" height="450" />
-    </div>
-    <div>
-      <h3>Front gate - $3000</h3>
-      <img src="Woodworking/front gate.jpeg" height="450" />
-    </div>
-  </div>
-
-  <!-- ENPH 353-->
-  <div id="selfdriving" class="section">
-    <h2>Self-Driving Robot</h2>
-
-    <p>Course link: <a href="https://projectlab.engphys.ubc.ca/enph-353/" target="_blank">ENPH 353 Project Lab</a></p>
-
-    <h2>Self-Driving Car Competition — <span class="highlight">1st Place</span></h2>
-
-    <article class="portfolio-item" id="sd-overview">
-      <h3>End-to-End Autonomous Navigation Stack</h3>
-      <ul>
-        <li>Built a <strong>modular ROS 1 + Gazebo</strong> architecture with dedicated nodes for control, perception, sign reading, and telemetry.</li>
-        <li>Trained <strong>four section-specific CNN pilots</strong> (Road, Gravel, Ramp, Off-Road) on <strong>100 k+ joystick-labeled images</strong> collected via a custom ESP32/joystick data-engine at 20 Hz.</li>
-        <li>Finished the full obstacle & sign course in <strong>87 s, zero collisions</strong>, fastest of all teams.</li>
-        <li>Implemented robust obstacle logic: motion-based pedestrian detection, rule-driven truck & Baby Yoda avoidance, and pink-line section transitions.</li>
-        <li>Deployed a <strong>TFLite sign-reader</strong> (HSV mask → SIFT homography → CNN) with <strong>0.0018 s inference & ≈ 99.9 % accuracy</strong> across 50 test runs.</li>
-        <li>Consensus voting across multiple drive-bys eliminated single-frame errors, enabling perfect sign decoding during competition.</li>
-        <li>Stack demonstrated <strong>20+ consecutive fault-free runs</strong>; CNN outputs smoothed by safety wrappers to prevent low-speed creeping.</li>
-      </ul>
-    </article>
-      <div class="card-grid">
-          <img src="enph_353/PlayingArena.png" alt="RL" width="500" height="300">
-          <img src="enph_353/compoverview.png" alt="RL" width="500" height="300">
+    <!-- Projects -->
+    <section id="Projects">
+      <div class="section-header">
+        <h2>Projects</h2><hr class="divider"/>
+      </div>
+      <h3>Biped Push Recovery</h3>
+      <div>
+        <ul>
+          <li>Trained a <strong>Proximal Policy Optimisation</strong> network to output joint torques at a 1 kHz simulation rate.</li>
+          <li>Used <strong>Automatic Domain Randomisation</strong> (mass, CoM offset, latency, friction) for robustness.</li>
+          <li>Injected <strong>high-entropy arm motions</strong> so the agent learns momentum-cancelling swings.</li>
+          <li>Cut simulated fall-rate by <strong>32 %</strong> for 50–75 N pushes versus a baseline policy.</li>
+          <li>Expanded the stable-recovery envelope from <strong>14 cm → 22 cm</strong> CoM displacement.</li>
+        </ul>
+        <img src="Projects/robot_recovery.gif" alt="Biped push recovery">
       </div>
 
+      <h3>Alarm Clock</h3>
+      <div>
+        <ul>
+          <li>Used an ESP32 S3 to build an alarm clock.</li>
+          <li>The alarm sound is a daily news brief from Reuters. I wrote a custom TTS port for the ESP.</li>
+          <li>During the day, the OLED screen displays the time along with live stock market information.</li>
+        </ul>
+      </div>
 
-    <iframe
-          src="enph_353/ENPH_353_Final_Report_Team_4.pdf"
-          class="resume-viewer"
-          title="Benedikt Howard's Resume"
-    ></iframe>
+      <h3>UBC Formula Electric Battery Modeling</h3>
+      <ul>
+        <li>Designed and validated custom PCB for the Battery Management module. Wrote firmware on embedded devices for data collection, cell balancing, and real-time SOC estimation.</li>
+        <li>Used collected data to model Li-Po cell discharge behavior and improve the SOC estimation algorithm by > 40 % accuracy.</li>
+        <li>Designed a PCB to validate firmware and test cells
+          <br><img src="Projects/FE_board.JPG" alt="FE board">
+        </li>
+      </ul>
+    </section>
 
-  </div>
+    <!-- Woodworking -->
+    <section id="Woodworking">
+      <div class="section-header">
+        <h2>Woodworking</h2><hr class="divider"/>
+      </div>
+      <div>
+        <h3>Epoxy Resin Table — $7,500</h3>
+        <img src="Woodworking/Living room table.jpg" alt="Living room table">
+      </div>
+      <div>
+        <h3>Hallway Table — $3,750</h3>
+        <img src="Woodworking/hall table 2.jpg" alt="Hallway table">
+      </div>
+      <div>
+        <h3>Bedside Table — $4,250</h3>
+        <img src="Woodworking/bedside table.jpg" alt="Bedside table">
+      </div>
+      <div>
+        <h3>Stool — $850</h3>
+        <img src="Woodworking/stool.jpg" alt="Stool">
+      </div>
+      <div>
+        <h3>Letter Box — $425</h3>
+        <img src="Woodworking/letter box 2.jpeg" alt="Letter box (2)">
+        <img src="Woodworking/letter box.jpg" alt="Letter box">
+      </div>
+      <div>
+        <h3>Front Gate — $3,000</h3>
+        <img src="Woodworking/front gate.jpeg" alt="Front gate">
+      </div>
+    </section>
+  </main>
+
   <script>
-    function showSection(id) {
-      // Hide all sections
-      document.querySelectorAll(".section").forEach((section) => section.classList.remove("active"));
-      // Remove 'active' from all tabs
-      document.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("active"));
+    const tabs = document.querySelectorAll('.tabs button');
+    const sections = document.querySelectorAll('main section');
 
-      // Show the selected section
-      document.getElementById(id).classList.add("active");
-      // Add 'active' to the clicked tab
-      document.querySelector(`.tab[onclick="showSection('${id}')"]`).classList.add("active");
-    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-target');
+        // deactivate all
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        // activate clicked & matching section
+        tab.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
