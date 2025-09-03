@@ -262,9 +262,9 @@
       <article class="portfolio-item" id="adaptive-control">
         <h3>Adaptive Control Stack — <span class="highlight">6-DoF Next-Generation Manipulator</span></h3>
         <ul>
-          <li>Developed a hybrid <strong>impedance + residual neural-network controller</strong> running at 500 Hz on an <strong>NVIDIA Jetson</strong>.</li>
-          <li>Trained in simulation with <strong>domain-randomised loads&nbsp;(0–10 kg)</strong>; deployment required zero manual retuning.</li>
-          <li>Achieved a <strong>40 % reduction in steady-state position error</strong> at maximum payload while preserving passivity and joint-limit compliance.</li>
+          <li>Designed and implemented an MPC-based joint-level controller with online payload estimation and feedforward torque compensation, achieving constraint-aware, high-precision trajectory tracking for robotic arms.</li>
+          <li>Achieved >7% mean error in payload estimation, and stable tracking error even during highly dynamic movements</li>
+          <li>Integrated a custom CAN extension board with a Nvidia Jetson to run this control</li>
         </ul>
       </article>
       <article class="portfolio-item" id="cloud-pipeline">
@@ -277,9 +277,8 @@
       <article class="portfolio-item" id="pick-place">
         <h3>Autonomous Pick-and-Place Stack — <span class="highlight">Grasp-Pose Estimation &amp; Trajectory Planning (6-DoF Arm)</span></h3>
         <ul>
-          <li>Integrated <strong>Fast Grasp Network</strong>, a retrained <strong>Motion Planning Network</strong>, and <strong>MoveIt 2</strong> analytic refinement.</li>
+          <li>Integrated <strong>Fast Grasp Network</strong>, a used <strong>MoveIt 2</strong> to plan the trajectory.</li>
           <li>Delivered <strong>≈ 780 ms</strong> median cycle time from point-cloud capture to collision-free execution.</li>
-          <li>Verified <strong>94 % grasp success</strong> on cluttered real-world objects during eight-hour trials.</li>
         </ul>
       </article>
     </section>
