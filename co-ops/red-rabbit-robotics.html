@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46NL1MC822');
+</script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Red Rabbit Robotics — Co-op • Benedikt Howard</title>
+  <meta name="description" content="Portfolio highlights from my co-op at Red Rabbit Robotics: tele-op redesign, adaptive control for a 6-DoF arm, cloud data pipeline, and grasp-to-plan pick-and-place."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+</head>
+<body>
+  <!-- Short hero (use a company/team image if you have one) -->
+  <header class="hero sub-hero" aria-label="Co-op header">
+    <img src="../media/RedRabbitRobotics/rrr_group.jpeg" alt="Robotics lab environment"/>
+    <div class="container hero-inner">
+      <p class="kicker">Co-op</p>
+      <h1>Red Rabbit Robotics — Portfolio Highlights</h1>
+      <p>Controls, tele-operation, cloud data pipelines, and autonomous manipulation.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html#coops">Co-ops</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Red Rabbit Robotics</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Meta pills -->
+    <div class="meta section">
+      <span class="pill">Role: Controls & Perception</span>
+      <span class="pill">When: 2025</span>
+      <span class="pill">Stack: STM32H7 • FreeRTOS • ROS2 • Jetson • IoT</span>
+      <span class="pill">Robots: 7-DoF legacy • 6-DoF next-gen</span>
+    </div>
+
+    <!-- Highlights as standard cards -->
+    <section class="section">
+      <h2 class="section-title">Highlights</h2>
+      <div class="grid">
+
+                <!-- Pick-and-place -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/RedRabbitRobotics/pickandplace.gif" alt="Grasp pose estimation and planning (illustrative)"/>
+          </div>
+          <div class="card-title">Autonomous Pick-and-Place — Grasp & Trajectory</div>
+          <div class="caption">
+            <ul>
+              <li>Integrated <strong>Fast Grasp Network</strong> for grasp-pose estimation; trajectory planning with <strong>MoveIt&nbsp;2</strong>.</li>
+              <li>~<strong>780&nbsp;ms</strong> median cycle from point-cloud capture to collision-free execution.</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- Tele-op redesign -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/RedRabbitRobotics/IMG_0502.jpg" alt="Tele-operation control hardware (illustrative)"/>
+          </div>
+          <div class="card-title">Advanced Tele-operation Redesign — 7-DoF Legacy Manipulator</div>
+          <div class="caption">
+            <ul>
+              <li>Re-architected operator-in-the-loop pipeline with <strong>STM32H7 + FreeRTOS</strong> running four independent UART buses.</li>
+              <li>Added real-time <strong>gravity compensation</strong>, <strong>null-space regulation</strong>, and <strong>bidirectional force feedback</strong>.</li>
+              <li>Cut round-trip latency <strong>35&nbsp;ms → &lt; 10&nbsp;ms</strong>; achieved <strong>500&nbsp;Hz</strong> closed-loop rate.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Adaptive control -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/coops/adaptive.jpg" alt="6-DoF manipulator adaptive control (illustrative)"/>
+          </div>
+          <div class="card-title">Adaptive Control Stack — 6-DoF Next-Gen Manipulator</div>
+          <div class="caption">
+            <ul>
+              <li>MPC-based joint-level controller with online payload estimation & feedforward torque compensation.</li>
+              <li>&gt;7% mean error in payload estimate; stable tracking even during highly dynamic motion.</li>
+              <li>Custom CAN extension board integrated with an <strong>NVIDIA Jetson</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Optional: specs / stack summary -->
+    <section class="section">
+      <h2 class="section-title">Systems & Stack</h2>
+      <table class="specs">
+        <tr><th>Real-time</th><td>FreeRTOS on STM32H7; UART×4, CAN, timers, DMA</td></tr>
+        <tr><th>Robotics</th><td>ROS2, MoveIt 2, MPC, gravity comp., null-space control</td></tr>
+        <tr><th>Perception</th><td>RGB-D, point clouds (Draco), grasp networks</td></tr>
+        <tr><th>Compute</th><td>NVIDIA Jetson (CUDA), custom CAN HAT</td></tr>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

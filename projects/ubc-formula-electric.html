@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>UBC Formula Electric — Battery Testing & Characterization • Benedikt Howard</title>
+  <meta name="description" content="Battery testing & characterization work for UBC Formula Electric: data acquisition, pack analysis, and safety envelopes."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-46NL1MC822');
+  </script>
+</head>
+<body>
+  <header class="hero sub-hero" aria-label="Project header">
+    <img src="../media/other/1688249435922.jpeg" alt="UBC Formula Electric battery pack (placeholder)"/>
+    <div class="container hero-inner">
+      <p class="kicker">Project</p>
+      <h1>UBC Formula Electric — Battery Testing & Characterization</h1>
+      <p>Data-driven testing to understand pack behavior, health, and safe operating envelopes.</p>
+    </div>
+  </header>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a><span aria-hidden="true">›</span>
+      <span aria-current="page">UBC Formula Electric</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="meta section">
+      <span class="pill">Role: Test & Data</span>
+      <span class="pill">When: 2022–2023</span>
+      <span class="pill">Focus: Battery testing & characterization</span>
+      <span class="pill">Stack: Python, C, CAN, DAQ</span>
+    </div>
+
+    <article class="prose section">
+      <h2>Overview</h2>
+      <p>
+        Work centered on <strong>battery testing and characterization</strong>—acquiring clean data,
+        extracting performance metrics, and informing safety limits for the racecar’s energy system.
+      </p>
+
+      <h3>Highlights</h3>
+      <ul>
+        <li>Built repeatable test procedures to capture pack and module behavior under varied load profiles.</li>
+        <li>Logged and decoded <strong>CAN</strong> streams; synchronized with DAQ measurements for aligned analysis.</li>
+        <li>Produced summary metrics (IR, thermal response) for quick comparisons.</li>
+        <li>Outlined safe envelopes and edge cases to feed into integration and race-day ops.</li>
+        <li>Complete comprehensive high voltage saftey training</li>
+      </ul>
+    </article>
+
+    <section class="section">
+      <h2 class="section-title">Artifacts</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Projects/FE_board.JPG" alt="Battery test bench (placeholder)"/>
+          </div>
+          <div class="card-title">BMS Testing board</div>
+          <div class="caption">Load profiles, logging setup, and thermal monitoring.</div>
+        </div>
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Projects/1695852713242.jpeg" alt="CAN logs (placeholder)"/>
+          </div>
+          <div class="card-title">BMS and sensing boards</div>
+        </div>
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Projects/1695852162559.jpeg" alt="Summary plots (placeholder)"/>
+          </div>
+          <div class="card-title">Battery Pack</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <table class="specs">
+        <tr><th>Acquisition</th><td>CAN, DAQ (voltage/current/temp)</td></tr>
+        <tr><th>Analysis</th><td>Python notebooks; curve fits and IR estimation</td></tr>
+        <tr><th>Outputs</th><td>Envelope recommendations, comparison dashboards</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Benedikt Howard • Built with HTML & CSS</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

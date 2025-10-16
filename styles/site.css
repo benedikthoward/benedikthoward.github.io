@@ -1,0 +1,78 @@
+/* styles/site.css */
+/* ==== Design tokens ==== */
+:root{
+  --bg:#f8fafc; --text:#0f172a; --muted:#475569;
+  --card:#ffffff; --border:#e2e8f0; --link:#0ea5e9;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(var(--bg), #fff);
+}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ==== Hero (full on home, short on subpages) ==== */
+.hero{position:relative;min-height:40vh;display:flex;align-items:end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.25),rgba(0,0,0,.45))}
+.hero-inner{position:relative;padding:56px 0}
+.hero h1{color:#fff;font-size:clamp(26px,4.5vw,42px);margin:0;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hero p{color:rgba(255,255,255,.92);font-size:clamp(15px,2vw,19px);margin:10px 0 0;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+/* short hero variant */
+.sub-hero{min-height:28vh}
+
+/* ==== Utility blocks ==== */
+.section{padding:32px 0}
+.kicker{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;font-size:12px}
+
+/* ==== Breadcrumb ==== */
+.breadcrumb{background:rgba(255,255,255,.7);border-bottom:1px solid var(--border)}
+.breadcrumb .inner{display:flex;gap:8px;align-items:center;padding:10px 0}
+.breadcrumb a{color:var(--link);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* ==== Cards/Grid (for galleries/lists) ==== */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{border:1px solid var(--border);background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.04);transition:transform .15s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.thumb{position:relative;aspect-ratio:4/3;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.card:hover .thumb img{transform:scale(1.03)}
+.thumb.contain img{object-fit:contain;background:var(--card);padding:8px}
+.overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 60%);opacity:0;transition:opacity .3s ease}
+.card:hover .overlay{opacity:1}
+.card-title{padding:12px 14px 16px;font-weight:600}
+.caption{padding:10px 14px;color:var(--muted);font-size:14px}
+
+/* ==== Prose (content area) ==== */
+.prose{max-width:75ch;color:var(--text);line-height:1.6}
+.prose h2{font-size:clamp(20px,3.2vw,28px);margin:18px 0 10px}
+.prose h3{font-size:clamp(18px,2.8vw,22px);margin:16px 0 8px}
+.prose p{margin:10px 0;color:var(--text)}
+.prose ul{padding-left:1.1rem;margin:8px 0}
+.prose li{margin:6px 0;color:var(--muted)}
+.prose code{background:#f1f5f9;border:1px solid var(--border);border-radius:6px;padding:2px 6px;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.9em}
+.prose pre{background:#0f172a;color:#e6edf3;border-radius:12px;padding:14px;overflow:auto}
+
+/* ==== Meta list & spec table ==== */
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px;color:var(--muted);font-size:14px}
+.meta .pill{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:999px}
+.specs{width:100%;border-collapse:separate;border-spacing:0;margin:10px 0;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.specs th,.specs td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left}
+.specs tr:last-child td{border-bottom:none}
+.specs th{width:160px;color:var(--muted);background:rgba(0,0,0,.02)}
+
+/* ==== Footer ==== */
+footer{border-top:1px solid var(--border);background:rgba(255,255,255,.7);text-align:center;padding:32px 16px;color:#64748b;margin-top:32px}
+
+/* ==== Dark mode ==== */
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0b1220;--text:#e6edf3;--muted:#9fb0c6;--card:#0f172a;--border:#1f2937}
+  body{background:linear-gradient(#0b1220,#0f172a)}
+  .prose code{background:#111827;border-color:#1f2937}
+  .prose pre{background:#0b1220}
+  .breadcrumb{background:#0f172a}
+  footer{background:#0f172a;color:#94a3b8}
+}

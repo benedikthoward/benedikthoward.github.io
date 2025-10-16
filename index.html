@@ -1,478 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benedikt Howard's Portfolio</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46NL1MC822');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Benedikt Howard — Engineering Portfolio</title>
+  <meta name="description" content="Engineering Physics portfolio — robotics, embedded systems, applied ML, and research projects." />
   <style>
-    :root {
-      --primary-color: #1f2937;
-      --accent-color: #4b5563;
-      --bg-color: #f9fafb;
-      --text-color: #111827;
-      --max-width: 1200px;
+    :root{
+      --bg:#f8fafc; --text:#0f172a; --muted:#475569; --card:#ffffff; --border:#e2e8f0; --link:#0ea5e9;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      color: var(--text-color);
-      background-color: var(--bg-color);
-    }
-    header {
-      background-color: var(--primary-color);
-      color: #fff;
-      padding: 1rem;
-    }
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header h1 {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.75rem;
-    }
-    .tabs {
-      display: flex;
-      background-color: #fff;
-      border-bottom: 2px solid var(--primary-color);
-    }
-    .tabs button {
-      flex: 1;
-      background: none;
-      border: none;
-      padding: 1rem;
-      cursor: pointer;
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      color: var(--primary-color);
-      transition: background 0.3s;
-    }
-    .tabs button.active {
-      border-bottom: 4px solid var(--accent-color);
-      font-weight: 500;
-    }
-    main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 1rem 2rem;
-    }
-    section {
-      display: none;
-      background: #fff;
-      padding: 2rem;
-      margin-top: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      text-align: left;
-    }
-    section.active {
-      display: block;
-    }
-    .section-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    .section-header h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      margin: 0;
-      margin-right: 0.5rem;
-      color: var(--primary-color);
-    }
-    .divider {
-      flex-grow: 1;
-      height: 2px;
-      background-color: var(--accent-color);
-      border: none;
-    }
-    /* Text alignment */
-    p, ul, li, h3, h4 { text-align: left; }
-    figcaption { text-align: center; }
-    /* Profile */
-    .profile-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-    .profile-section img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-    }
-    .profile-info {
-      flex: 1;
-      min-width: 280px;
-    }
-    .profile-info h3 {
-      margin-top: 0;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--primary-color);
-    }
-    .button-bar {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .button-bar button {
-      background-color: var(--primary-color);
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.25rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-    .button-bar button:hover {
-      background-color: var(--accent-color);
-    }
-    .location {
-      font-style: italic;
-      color: #6b7280;
-      margin-top: 0.5rem;
-    }
-    .resume-viewer {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      margin-top: 1.5rem;
-    }
-    /* Media sizing and centering */
-    main img,
-    main video {
-      max-height: 400px;
-      width: auto;
-      display: block;
-      margin: 0.75rem auto;
-    }
-    .project-image, .project-video, .card-grid img {
-      /* just in case these classes are applied */
-      max-height: 400px;
-      width: auto;
-      display: block;
-      margin: 0.75rem auto;
-    }
-    /* Portfolio items */
-    .portfolio-item {
-      margin-bottom: 1.5rem;
-    }
-    .portfolio-item h3 {
-      margin-bottom: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.25rem;
-      color: var(--primary-color);
-    }
-    .highlight {
-      color: var(--text-color);
-    }
-    .card-grid,
-    .project-container,
-    .image-pair {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(#f8fafc,#fff);color:var(--text)}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+    /* HERO */
+    .hero{position:relative;min-height:48vh;display:flex;align-items:end}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.3),rgba(0,0,0,.4))}
+    .hero-inner{position:relative;padding:72px 0}
+    .hero h1{color:#fff;font-size:clamp(28px,5vw,48px);margin:0;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+    .hero p{color:rgba(255,255,255,.92);font-size:clamp(16px,2.2vw,20px);margin:12px 0 0;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+    /* ABOUT */
+    .about{padding:48px 0}
+    .about-grid{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center}
+    @media (max-width:640px){.about-grid{grid-template-columns:1fr}.about-buttons{justify-content:flex-start}}
+    .headshot{width:160px;height:160px;border-radius:16px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .about-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);text-decoration:none;color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .15s ease,box-shadow .15s ease}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+    .btn svg{width:16px;height:16px}
+    .bio{color:var(--muted);max-width:70ch}
+
+    /* GRID / CARDS */
+    .section-title{font-size:clamp(22px,3.5vw,28px);font-weight:700;margin:8px 0 16px}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.04);transition:transform .15s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08)}
+    .thumb{position:relative;aspect-ratio:4/3;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block}
+    .thumb.contain img{object-fit: contain;background: var(--card);padding: 8px;}
+    .card:hover .thumb img{transform:scale(1.05)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%);opacity:0;transition:opacity .3s ease}
+    .card:hover .overlay{opacity:1}
+    .blurb{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;color:#fff;opacity:0;transform:translateY(8px);transition:transform .3s ease,opacity .3s ease}
+    .card:hover .blurb{opacity:1;transform:translateY(0)}
+    .card-title{padding:12px 14px 16px;font-weight:600}
+
+    /* TABS */
+    .tabs{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 16px}
+    .tablist{display:flex;flex-wrap:wrap;gap:8px}
+    .tab{appearance:none;border:1px solid var(--border);background:var(--card);color:var(--muted);padding:8px 12px;border-radius:999px;font-weight:600;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,color .2s ease}
+    .tab:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+    .tab[aria-selected="true"]{color:var(--text);box-shadow:0 10px 24px rgba(0,0,0,.10)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);background:rgba(255,255,255,.7);text-align:center;padding:32px 16px;color:#64748b;margin-top:32px}
+
+    /* DARK (auto via system) */
+    @media (prefers-color-scheme:dark){
+      :root{--bg:#0b1220;--text:#e6edf3;--muted:#9fb0c6;--card:#0f172a;--border:#1f2937}
+      body{background:linear-gradient(#0b1220,#0f172a)}
+      .btn{background:#111827;color:#e6edf3}
+      .bio{color:#9fb0c6}
+      footer{background:#0f172a;color:#94a3b8}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Benedikt Howard's Portfolio</h1>
+  <!-- HERO / HEADER IMAGE -->
+  <header class="hero" aria-label="Intro">
+    <img src="media/other/1583920273266.jpeg" alt="" />
+    <div class="container hero-inner">
+      <h1>Benedikt's Portfolio</h1>
     </div>
   </header>
 
-  <div class="tabs">
-    <button class="active" data-target="AboutMe">About Me</button>
-    <button data-target="RedRabbit">Red Rabbit CO-OP</button>
-    <button data-target="BMW">BMW CO-OP</button>
-    <button data-target="selfdriving">Self-Driving</button>
-    <button data-target="RobotSummer">Burger Cooking Robot</button>
-    <button data-target="Projects">Projects</button>
-    <button data-target="Woodworking">Woodworking</button>
-  </div>
-
   <main>
-    <!-- About Me -->
-    <section id="AboutMe" class="active">
-      <div class="section-header">
-        <h2>About Me</h2><hr class="divider"/>
-      </div>
-      <div class="profile-section">
-        <img src="Welcome_page/headshot.jpeg" alt="Benedikt's Headshot">
-        <div class="profile-info">
-          <h3>Short Bio</h3>
-          <p>
-            I am a technology enthusiast with a deep passion for robotics,
+    <!-- ABOUT + CONTACT -->
+    <section class="about">
+      <div class="container about-grid">
+        <img class="headshot" src="media/other/headshot.jpeg" alt="Headshot of Benedikt Howard" />
+        <div>
+          <div class="about-buttons">
+            <a class="btn" href="mailto:benedikthoward@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              Email
+            </a>
+            <a class="btn" href="https://www.linkedin.com/in/benedikthoward/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM0 8h5v16H0zM8 8h4.8v2.2h.07C13.5 8.9 15.4 8 17.7 8 22.3 8 24 10.9 24 15.4V24h-5v-7.4c0-1.8 0-4.1-2.5-4.1-2.4 0-2.8 1.9-2.8 3.9V24H8z"/></svg>
+              LinkedIn
+            </a>
+            <a class="btn" href="media/other/Benedikt_Howard_Resume.pdf" target="_blank" aria-label="Resume">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h10a2 2 0 0 0 2-2V6z"/></svg>
+              Resume
+            </a>
+          </div>
+          <p class="bio">I am a fourth year UBC Engineering Physics student with a deep passion for robotics,
             autonomous systems, and artificial intelligence. I also maintain
             a keen interest in finance and venture capital, exploring how
             innovative solutions can transform both the technological and
-            business landscapes.
-          </p>
-          <div class="button-bar">
-            <button onclick="location.href='mailto:benedikthoward@gmail.com'">
-              <i class="fas fa-envelope"></i> Email Me
-            </button>
-            <button onclick="window.open('https://www.linkedin.com/in/benedikt-howard-256939255/','_blank')">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </button>
-          </div>
-          <p class="location">Vancouver, Canada</p>
+            business landscapes.</p>
         </div>
       </div>
-      <iframe
-        src="Welcome_page/Benedikt_Howard_Resume.pdf"
-        class="resume-viewer"
-        title="Benedikt Howard's Resume">
-      </iframe>
     </section>
 
-    <!-- Red Rabbit CO-OP -->
-    <section id="RedRabbit">
-      <div class="section-header">
-        <h2>Red Rabbit Robotics – Portfolio Highlights</h2><hr class="divider"/>
-      </div>
-      <article class="portfolio-item" id="teleop-redesign">
-        <h3>Advanced Tele-operation Redesign — <span class="highlight">7-DoF Legacy Manipulator</span></h3>
-        <ul>
-          <li>Re-architected operator-in-the-loop pipeline with an <strong>STM32 H7 + FreeRTOS</strong> controller running four independent UART buses.</li>
-          <li>Added real-time <strong>gravity compensation</strong>, <strong>null-space regulation</strong>, and <strong>bidirectional force feedback</strong>.</li>
-          <li>Cut round-trip latency <strong>35 ms → &lt; 10 ms</strong> and reached a <strong>500 Hz</strong> closed-loop rate.</li>
-        </ul>
-      </article>
-      <article class="portfolio-item" id="adaptive-control">
-        <h3>Adaptive Control Stack — <span class="highlight">6-DoF Next-Generation Manipulator</span></h3>
-        <ul>
-          <li>Designed and implemented an MPC-based joint-level controller with online payload estimation and feedforward torque compensation, achieving constraint-aware, high-precision trajectory tracking for robotic arms.</li>
-          <li>Achieved >7% mean error in payload estimation, and stable tracking error even during highly dynamic movements</li>
-          <li>Integrated a custom CAN extension board with a Nvidia Jetson to run this control</li>
-        </ul>
-      </article>
-      <article class="portfolio-item" id="cloud-pipeline">
-        <h3>Cloud Data-Acquisition Pipeline for Hardware-in-the-Loop Fine-Tuning</h3>
-        <ul>
-          <li>Captured <strong>H.264 video</strong>, <strong>Draco-compressed point clouds</strong>, joint paths, and end-effector wrenches, all time-stamped via <strong>Precision Time Protocol</strong>.</li>
-          <li>Streamed encrypted packets with <strong>AWS IoT Greengrass</strong> into <strong>Amazon S3</strong>, logging ≈ 9 GB / shift with &lt; 0.02 % packet loss.</li>
-        </ul>
-      </article>
-      <article class="portfolio-item" id="pick-place">
-        <h3>Autonomous Pick-and-Place Stack — <span class="highlight">Grasp-Pose Estimation &amp; Trajectory Planning (6-DoF Arm)</span></h3>
-        <ul>
-          <li>Integrated <strong>Fast Grasp Network</strong>, a used <strong>MoveIt 2</strong> to plan the trajectory.</li>
-          <li>Delivered <strong>≈ 780 ms</strong> median cycle time from point-cloud capture to collision-free execution.</li>
-        </ul>
-      </article>
-    </section>
-
-    <!-- BMW CO-OP -->
-    <section id="BMW">
-      <div class="section-header">
-        <h2>BMW CO-OP</h2><hr class="divider"/>
-      </div>
-      <article class="portfolio-item" id="qa-intelligence">
-        <h3>Fleet-wide Quality-Assurance Intelligence Platform</h3>
-        <ul>
-          <li>Replaced manual data hunts by building an <strong>end-to-end monitoring stack</strong> on the <strong>Palantir Foundry</strong> platform with Python micro-services and real-time Spark streams.</li>
-          <li><strong>Ingested &amp; fused 10 million+</strong> telemetry messages, diagnostic codes, and warranty notes into a unified event schema.</li>
-          <li>Auto-clustered emerging fault signatures using <strong>DBSCAN</strong> and <strong>Spectral-Net</strong>, adapting seamlessly to new vehicle models.</li>
-          <li><strong>Fine-tuned GPT-3.5</strong> on 6 000 expert case reviews—now drafts first-pass QA reports in seconds.</li>
-          <li>Adopted by <strong>60 QA engineers</strong>; reduced fault-triage time by <strong>≈ 40 %</strong> and surfaced cross-model issues within hours.</li>
-        </ul>
-      </article>
-      <img src="BMW/BMW_internship.png" alt="Internship product flow chart">
-    </section>
-
-    <!-- Self-Driving -->
-    <section id="selfdriving">
-      <div class="section-header">
-        <h2>Self-Driving Car Competition — <span class="highlight">1st Place</span></h2><hr class="divider"/>
-      </div>
-      <article class="portfolio-item" id="sd-overview">
-        <h3>End-to-End Autonomous Navigation Stack</h3>
-        <ul>
-          <li>Built a <strong>modular ROS 1 + Gazebo</strong> architecture with dedicated nodes for control, perception, sign reading, and telemetry.</li>
-          <li>Trained <strong>four section-specific CNN pilots</strong> (Road, Gravel, Ramp, Off-Road) on <strong>100 k+ joystick-labeled images</strong> collected via a custom ESP32/joystick data-engine at 20 Hz.</li>
-          <li>Finished the full obstacle & sign course in <strong>87 s, zero collisions</strong>, fastest of all teams.</li>
-          <li>Implemented robust obstacle logic: motion-based pedestrian detection, rule-driven truck & Baby Yoda avoidance, and pink-line section transitions.</li>
-          <li>Deployed a <strong>TFLite sign-reader</strong> (HSV mask → SIFT homography → CNN) with <strong>0.0018 s inference & ≈ 99.9 %</strong> accuracy across 50 runs.</li>
-          <li>Consensus voting across multiple drive-bys eliminated single-frame errors for perfect sign decoding.</li>
-          <li>Stack demonstrated <strong>20+ consecutive fault-free runs</strong>; CNN outputs smoothed by safety wrappers to prevent low-speed creeping.</li>
-        </ul>
-      </article>
-      <div class="card-grid">
-        <img src="enph_353/PlayingArena.png" alt="Playing Arena">
-        <img src="enph_353/compoverview.png" alt="Competition overview">
-      </div>
-      <iframe
-        src="enph_353/ENPH_353_Final_Report_Team_4.pdf"
-        class="resume-viewer"
-        title="ENPH 353 Final Report">
-      </iframe>
-    </section>
-
-    <!-- Robot Summer -->
-    <section id="RobotSummer">
-      <div class="section-header">
-        <h2>Robot Summer (ENPH 253)</h2><hr class="divider"/>
-      </div>
-      <ul>
-        <li>Built a <strong>22-degree-of-freedom robot</strong> that “grills,” assembles, and plates hamburgers without human intervention.</li>
-        <li>Designed and fabricated custom PCBs: <strong>H-bridge DC motor driver</strong>, <strong>IR-beacon band-pass filter + Schmitt trigger</strong>, and a main motherboard hosting two ESP32s + one STM-series.</li>
-        <li>Wrote <strong>FreeRTOS-based firmware</strong> orchestrating the drivetrain, 40+ sensors/actuators, and real-time IR detection.</li>
-        <li>Implemented a <strong>WebSocket interface</strong> on the ESP32-S3 for live debugging, data logging, and calibration.</li>
-        <li>Engineered a compact <strong>mecanum-wheel drivetrain</strong> and a <strong>16 N·m worm-gear</strong> from 1 mm bent aluminium.</li>
-        <li>Developed a <strong>bare-metal CV algorithm</strong> on the ESP32-CAM to detect buns, patties, and toppings under changing lighting.</li>
-      </ul>
-      <div class="image-pair">
-        <figure>
-          <img src="robot_summer/robot.jpg" alt="Final assembled robot" class="project-image">
-          <figcaption>Final assembled robot</figcaption>
-        </figure>
-        <figure>
-          <video controls class="project-video">
-            <source src="robot_summer/robot_vid.mov" type="video/mp4">
-          </video>
-          <figcaption>Robot testing</figcaption>
-        </figure>
-      </div>
-      <h4>Robot's main motherboard</h4>
-      <div class="image-pair">
-        <figure>
-          <img src="robot_summer/main motherboard.png" alt="Main motherboard" class="project-image">
-          <figcaption>Main motherboard (top view)</figcaption>
-        </figure>
-        <figure>
-          <img src="robot_summer/main motherboad sch.png" alt="Main motherboard schematic" class="project-image">
-          <figcaption>Main motherboard schematic</figcaption>
-        </figure>
-      </div>
-      <h4>Dual channel H-bridge motor driver</h4>
-      <div class="image-pair">
-        <figure>
-          <img src="robot_summer/H bridge.png" alt="H-bridge layout" class="project-image">
-          <figcaption>H-bridge layout</figcaption>
-        </figure>
-        <figure>
-          <img src="robot_summer/H bridge sch.png" alt="H-bridge schematic" class="project-image">
-          <figcaption>H-bridge schematic</figcaption>
-        </figure>
-      </div>
-      <h4>IR beacon detection circuit</h4>
-      <div class="image-pair">
-        <figure>
-          <img src="robot_summer/IR beacon.png" alt="IR beacon layout" class="project-image">
-          <figcaption>IR beacon layout</figcaption>
-        </figure>
-        <figure>
-          <img src="robot_summer/IR beacon sch.png" alt="IR beacon schematic" class="project-image">
-          <figcaption>IR beacon schematic</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="Projects">
-      <div class="section-header">
-        <h2>Projects</h2><hr class="divider"/>
-      </div>
-      <h3>Biped Push Recovery</h3>
-      <div>
-        <ul>
-          <li>Trained a <strong>Proximal Policy Optimisation</strong> network to output joint torques at a 1 kHz simulation rate.</li>
-          <li>Used <strong>Automatic Domain Randomisation</strong> (mass, CoM offset, latency, friction) for robustness.</li>
-          <li>Injected <strong>high-entropy arm motions</strong> so the agent learns momentum-cancelling swings.</li>
-          <li>Cut simulated fall-rate by <strong>32 %</strong> for 50–75 N pushes versus a baseline policy.</li>
-          <li>Expanded the stable-recovery envelope from <strong>14 cm → 22 cm</strong> CoM displacement.</li>
-        </ul>
-        <img src="Projects/robot_recovery.gif" alt="Biped push recovery">
+    <!-- SHOWCASE TABS -->
+    <section class="container" id="work">
+      <div class="tabs" role="tablist" aria-label="Content categories">
+        <h2 class="section-title" style="margin:0">Showcase</h2>
+        <div class="tablist">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-projects" id="tab-projects" data-tab="projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-coops" id="tab-coops" data-tab="coops">Co-ops</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-interests" id="tab-interests" data-tab="interests">Other interests</button>
+        </div>
       </div>
 
-      <h3>Alarm Clock</h3>
-      <div>
-        <ul>
-          <li>Used an ESP32 S3 to build an alarm clock.</li>
-          <li>The alarm sound is a daily news brief from Reuters. I wrote a custom TTS port for the ESP.</li>
-          <li>During the day, the OLED screen displays the time along with live stock market information.</li>
-        </ul>
+      <!-- Projects panel (your tiles) -->
+      <div id="panel-projects" class="tab-panel active" role="tabpanel" aria-labelledby="tab-projects">
+        <div class="grid">
+          <!-- Tile 1 -->
+          <a class="card" href="projects/autonomous-burger-robot.html">
+            <div class="thumb">
+              <img src="media/robot_summer/robot.jpg" alt="Autonomous burger robot" />
+              <div class="overlay"></div>
+              <div class="blurb">Built from scratch robot with over 40 sensors and actuators</div>
+            </div>
+            <div class="card-title">Autonomous Burger Robot (22-DOF)</div>
+          </a>
+
+          <!-- Tile 2 -->
+          <a class="card" href="projects/ros-autonomous-driving.html">
+            <div class="thumb">
+              <img src="media/enph_353/PlayingArena.png" alt="Autonomous Driving" />
+              <div class="overlay"></div>
+              <div class="blurb">1st place winning robot in a navigation and sign reading competition</div>
+            </div>
+            <div class="card-title">ROS Autonomous Driving Competition</div>
+          </a>
+
+          <!-- Tile 3 -->
+          <a class="card" href="projects/rocket-landing-controls.html">
+            <div class="thumb">
+              <img src="media/other/steered-rocket.gif" alt="Rocket path planning project" />
+              <div class="overlay"></div>
+              <div class="blurb">A program to solve the non-convex controls problem of landing a rocket (in progress)</div>
+            </div>
+            <div class="card-title">Rocket Landing Controls</div>
+          </a>
+          
+          <!-- Tile 5 -->
+          <a class="card" href="projects/ubc-rocket-flight-controller.html">
+            <div class="thumb contain">
+              <img src="media/other/rocket_logo.png" alt="UBC rocket flight stack" />
+              <div class="overlay"></div>
+              <div class="blurb">Embedded software for the flight controller on a thrust vectoring "Rocket".(ongoing)</div>
+            </div>
+            <div class="card-title">UBC Rocket: Flight Controller</div>
+          </a>
+
+                      <!-- Tile 7 -->
+          <a class="card" href="projects/humanoid-push-recovery.html">
+            <div class="thumb">
+              <img src="media/Projects/robot_recovery.gif" alt="Humanoid push recovery" />
+              <div class="overlay"></div>
+              <div class="blurb">Reinforcement Larning algorithm and training policy optimized to teach push recovery.</div>
+            </div>
+            <div class="card-title">Humanoid Push Recovery</div>
+          </a>
+
+          <!-- Tile 6 -->
+          <a class="card" href="projects/ubc-formula-electric.html">
+            <div class="thumb">
+              <img src="media/other/7a1da4_ee11c83bdd644b838d16caea4a710eed~mv2.avif" alt="UBC Formula Electric" />
+              <div class="overlay"></div>
+              <div class="blurb">Battery testing charachterisation.</div>
+            </div>
+            <div class="card-title">UBC Formula Electric</div>
+          </a>
+
+                    <!-- Tile 4 -->
+          <a class="card" hre="projects/optotune-superres.html">
+            <div class="thumb">
+              <img src="media/other/optotune.webp" alt="Optotune beam-shifting project" />
+              <div class="overlay"></div>
+              <div class="blurb">Optics + compute pipeline, using a beam shiftinng device to improve barcode reading.(in progress)</div>
+            </div>
+            <div class="card-title">Amazon Robotics Super-Resolution</div>
+          </a>
+
+          <!-- Tile 8 -->
+          <a class="card" hre="projects/ubc-rocket-h7.html">
+            <div class="thumb">
+              <img src="media/other/showcase_tilted_disks_encounter.gif" alt="Galaxy collisions" />
+              <div class="overlay"></div>
+              <div class="blurb">Finite difference simulation for the collision of Toomre modeled galaxies.</div>
+            </div>
+            <div class="card-title">Galaxy Collision Modelling</div>
+          </a>
+
+        </div>
       </div>
 
-      <h3>UBC Formula Electric Battery Modeling</h3>
-      <ul>
-        <li>Designed and validated custom PCB for the Battery Management module. Wrote firmware on embedded devices for data collection, cell balancing, and real-time SOC estimation.</li>
-        <li>Used collected data to model Li-Po cell discharge behavior and improve the SOC estimation algorithm by > 40 % accuracy.</li>
-        <li>Designed a PCB to validate firmware and test cells
-          <br><img src="Projects/FE_board.JPG" alt="FE board">
-        </li>
-      </ul>
-    </section>
+      <!-- Co-ops panel -->
+      <div id="panel-coops" class="tab-panel" role="tabpanel" aria-labelledby="tab-coops" hidden>
+        <div class="grid">
+          <!-- Example (replace with your real entries) -->
+          <a class="card" href="co-ops/bmw.html">
+            <div class="thumb contain">
+              <img src="media/other/BMW_logo.png" alt="BMW data pipeline" />
+              <div class="overlay"></div>
+              <div class="blurb">Fleet → Data Evaluation pipeline; error pattern mining; LLM-assisted summaries.</div>
+            </div>
+            <div class="card-title">BMW • Data Pipeline & LLM QA</div>
+          </a>
 
-    <!-- Woodworking -->
-    <section id="Woodworking">
-      <div class="section-header">
-        <h2>Woodworking</h2><hr class="divider"/>
+          <a class="card" href="co-ops/red-rabbit-robotics.html">
+            <div class="thumb">
+              <img src="media/other/1753294841917.jpeg" alt="CGEM timing & positioning" />
+              <div class="overlay"></div>
+              <div class="blurb">Teleoperation, Motor controls, CV, .</div>
+            </div>
+            <div class="card-title">Red Rabbit Robotics • Software</div>
+          </a>
+        </div>
       </div>
-      <div>
-        <h3>Epoxy Resin Table — $7,500</h3>
-        <img src="Woodworking/Living room table.jpg" alt="Living room table">
-      </div>
-      <div>
-        <h3>Hallway Table — $3,750</h3>
-        <img src="Woodworking/hall table 2.jpg" alt="Hallway table">
-      </div>
-      <div>
-        <h3>Bedside Table — $4,250</h3>
-        <img src="Woodworking/bedside table.jpg" alt="Bedside table">
-      </div>
-      <div>
-        <h3>Stool — $850</h3>
-        <img src="Woodworking/stool.jpg" alt="Stool">
-      </div>
-      <div>
-        <h3>Letter Box — $425</h3>
-        <img src="Woodworking/letter box 2.jpeg" alt="Letter box (2)">
-        <img src="Woodworking/letter box.jpg" alt="Letter box">
-      </div>
-      <div>
-        <h3>Front Gate — $3,000</h3>
-        <img src="Woodworking/front gate.jpeg" alt="Front gate">
+
+      <!-- Other interests panel -->
+      <div id="panel-interests" class="tab-panel" role="tabpanel" aria-labelledby="tab-interests" hidden>
+        <div class="grid">
+          <a class="card" href="interests/woodworking.html">
+            <div class="thumb">
+              <img src="media/Woodworking/hall table 2.jpg" alt="Custom furniture builds" />
+              <div class="overlay"></div>
+              <div class="blurb">Designed and built custom commission furniture (~$35k in projects).</div>
+            </div>
+            <div class="card-title">Woodworking</div>
+          </a>
+
+        </div>
       </div>
     </section>
   </main>
 
-  <script>
-    const tabs = document.querySelectorAll('.tabs button');
-    const sections = document.querySelectorAll('main section');
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-target');
-        // deactivate all
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        // activate clicked & matching section
-        tab.classList.add('active');
-        document.getElementById(target).classList.add('active');
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tabs behavior + deep links
+    const tabs = document.querySelectorAll('[data-tab]');
+    const panels = {
+      projects: document.getElementById('panel-projects'),
+      coops: document.getElementById('panel-coops'),
+      interests: document.getElementById('panel-interests')
+    };
+    function activate(name){
+      tabs.forEach(btn => btn.setAttribute('aria-selected', String(btn.dataset.tab === name)));
+      Object.entries(panels).forEach(([key, el]) => {
+        if(!el) return;
+        el.classList.toggle('active', key === name);
+        el.hidden = key !== name;
       });
-    });
+    }
+    tabs.forEach(btn => btn.addEventListener('click', () => {
+      activate(btn.dataset.tab);
+      history.replaceState(null, '', '#' + btn.dataset.tab); // update URL hash
+    }));
+    const hash = (location.hash || '#projects').replace('#', '');
+    if(['projects','coops','interests'].includes(hash)) activate(hash); else activate('projects');
   </script>
 </body>
 </html>

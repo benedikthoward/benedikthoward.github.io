@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46NL1MC822');
+</script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ROS Autonomous Driving — 1st Place • Benedikt Howard</title>
+  <meta name="description" content="End-to-end ROS + CNN stack for sign reading and autonomous navigation. 1st place with 87s, zero collisions."/>
+  <!-- Shared site styles (same look as landing page) -->
+  <link rel="stylesheet" href="../styles/site.css"/>
+
+  <!-- Tiny page-specific styles -->
+  <style>
+    .doc-embed{
+      width:100%;
+      height:80vh;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--card);
+      box-shadow:0 4px 18px rgba(0,0,0,.04);
+    }
+  </style>
+</head>
+<body>
+  <!-- Short hero -->
+  <header class="hero sub-hero" aria-label="Project header">
+    <img src="../media/enph_353/PlayingArena.png" alt="ROS autonomous driving competition arena"/>
+    <div class="container hero-inner">
+      <p class="kicker">Project</p>
+      <h1>ROS Autonomous Driving Competition — <span style="white-space:nowrap;">1st Place</span></h1>
+      <p>End-to-end autonomous navigation stack: perception, sign reading, control, and telemetry.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">ROS Autonomous Driving Project</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Meta pills -->
+    <div class="meta section">
+      <span class="pill">Role: Perception & Controls</span>
+      <span class="pill">When: 2024</span>
+      <span class="pill">Stack: ROS 1, Gazebo, TFLite, OpenCV</span>
+      <span class="pill">Data: 100k+ labeled frames</span>
+    </div>
+
+    <!-- Overview / Highlights -->
+    <article class="prose section">
+      <h2>Overview</h2>
+      <p>
+        Built a modular ROS-based autonomy stack that completed the full obstacle-and-sign course
+        in <strong>87&nbsp;seconds with zero collisions</strong>, the fastest of all teams. In collaboration with <a href="https://shuyuvankerkwijk.github.io/">Shuyu vanKerkwijk</a>
+      </p>
+
+      <h3>Highlights</h3>
+      <ul>
+        <li>Modular <strong>ROS&nbsp;1 + Gazebo</strong> architecture with dedicated nodes for control, perception, sign reading, and telemetry.</li>
+        <li>Trained <strong>four section-specific CNN pilots</strong> (Road, Gravel, Ramp, Off-Road) on <strong>100k+ joystick-labeled images</strong> collected via a custom ESP32/joystick data engine at 20&nbsp;Hz.</li>
+        <li>Robust obstacle logic: motion-based pedestrian detection, rule-driven truck &amp; “Baby Yoda” avoidance, pink-line section transitions.</li>
+        <li><strong>TFLite sign-reader</strong> (HSV mask → SIFT homography → CNN) with ~<strong>0.0018&nbsp;s</strong> inference and ≈<strong>99.9%</strong> accuracy over 50 runs.</li>
+        <li>Consensus voting across multiple frames eliminated single-frame errors for perfect sign decoding.</li>
+        <li><strong>20+ consecutive fault-free runs</strong>; CNN outputs wrapped with safety filters to prevent low-speed creeping.</li>
+      </ul>
+
+    </article>
+
+    <!-- Gallery -->
+    <section class="section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="thumb"><img src="../media/enph_353/PlayingArena.png" alt="Arena layout"/></div>
+          <div class="caption">Competition arena</div>
+        </div>
+        <div class="card">
+          <div class="thumb contain"><img src="../media/enph_353/compoverview.png" alt="System overview"/></div>
+          <div class="caption">System overview</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report embed -->
+    <section class="section">
+      <h2 class="section-title">Report</h2>
+      <iframe
+        src="../media/enph_353/ENPH_353_Final_Report_Team_4.pdf"
+        class="doc-embed"
+        title="ENPH 353 Final Report (Team 4)"></iframe>
+      <p class="caption" style="margin-top:8px">
+        Can’t view the embed? <a href="../media/enph_353/ENPH_353_Final_Report_Team_4.pdf" target="_blank" rel="noreferrer noopener">Open the PDF in a new tab</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

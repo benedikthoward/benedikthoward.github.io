@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46NL1MC822');
+</script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>BMW — Co-op • Benedikt Howard</title>
+  <meta name="description" content="Fleet-wide QA intelligence platform: Foundry + Spark streaming, Python microservices, clustering (DBSCAN/SpectralNet), and LLM-assisted reporting."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+</head>
+<body>
+  <!-- Short hero -->
+  <header class="hero sub-hero" aria-label="Co-op header">
+    <img src="../media/other/BMW_logo.png" alt="BMW QA platform flow"/>
+    <div class="container hero-inner">
+      <p class="kicker">Co-op</p>
+      <h1>BMW — Fleet QA Intelligence</h1>
+      <p>End-to-end monitoring stack, clustering of emerging issues, and LLM-assisted QA reports.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html#coops">Co-ops</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">BMW</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Meta pills -->
+    <div class="meta section">
+      <span class="pill">Role: Data & Platform</span>
+      <span class="pill">When: 2023</span>
+      <span class="pill">Stack: Foundry, Spark, Python, DBSCAN, SpectralNet</span>
+      <span class="pill">Users: 60+ QA engineers</span>
+    </div>
+
+    <!-- Highlights -->
+    <section class="section">
+      <h2 class="section-title">Highlights</h2>
+      <div class="grid">
+        <!-- Platform build -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/BMW/bmw-car-data-20x7.jpeg" alt="End-to-end monitoring stack diagram"/>
+          </div>
+          <div class="card-title">Fleet-wide QA Intelligence Platform</div>
+          <div class="caption">
+            <ul>
+              <li>Replaced manual hunts with an <strong>end-to-end monitoring stack</strong> on <strong>Palantir Foundry</strong> using Python microservices and real-time Spark streams.</li>
+              <li><strong>Ingested &amp; fused 10M+</strong> telemetry messages, DTCs, and warranty notes into a unified event schema.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Clustering -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/BMW/BMW_internship.png" alt="Clustering signal (illustrative)"/>
+          </div>
+          <div class="card-title">Emerging Fault Signature Detection</div>
+          <div class="caption">
+            <ul>
+              <li>Auto-clustered patterns with <strong>DBSCAN</strong> and <strong>SpectralNet</strong> to surface cross-model issues quickly.</li>
+              <li>Design adapts seamlessly to new vehicle models and data distributions.</li>
+              <li>Fine-tuned an LLM on <strong>6,000</strong> expert case reviews to draft first-pass QA reports in seconds.</li>
+              <li>Adopted by <strong>60</strong> QA engineers; reduced triage time by <strong>≈ 40%</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Systems & Stack -->
+    <section class="section">
+      <h2 class="section-title">Systems & Stack</h2>
+      <table class="specs">
+        <tr><th>Platform</th><td>Palantir Foundry (pipelines, governance, ops)</td></tr>
+        <tr><th>Streaming</th><td>Apache Spark (structured streaming), time-window aggregations</td></tr>
+        <tr><th>Services</th><td>Python microservices (ingest, fuse, annotate)</td></tr>
+        <tr><th>ML</th><td>DBSCAN, SpectralNet for clustering; supervised models for anomaly scoring</td></tr>
+        <tr><th>LLM</th><td>Domain-tuned model for report drafting on curated case corpus</td></tr>
+        <tr><th>Impact</th><td>10M+ events integrated; ≈40% faster fault triage; cross-model issues surfaced within hours</td></tr>
+      </table>
+    </section>
+
+    <!-- Optional extra gallery: add images if you have them -->
+    <!--
+    <section class="section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="grid">
+        <div class="card"><div class="thumb"><img src="../media/BMW/pipeline.png" alt="Pipeline graph"/></div><div class="caption">Pipeline lineage</div></div>
+        <div class="card"><div class="thumb"><img src="../media/BMW/dashboard.png" alt="Dashboard"/></div><div class="caption">QA dashboard</div></div>
+      </div>
+    </section>
+    -->
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

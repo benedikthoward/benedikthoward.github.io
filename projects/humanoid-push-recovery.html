@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Humanoid Push Recovery — RL Policy • Benedikt Howard</title>
+  <meta name="description" content="Deep RL policy for humanoid push recovery. 32% fall-rate reduction for 50–75 N pushes via retraining, Automatic Domain Randomization, and momentum-canceling arm swings."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-46NL1MC822');
+  </script>
+
+  <style>
+    /* Optional: tiny monospace block for equations/snippets if you add any later */
+    .eq{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f1f5f9;border:1px solid var(--border);border-radius:10px;padding:10px 12px;overflow:auto}
+    @media (prefers-color-scheme:dark){.eq{background:#111827}}
+  </style>
+</head>
+<body>
+  <!-- Hero (SVG gradient placeholder; no external image required) -->
+  <header class="hero sub-hero" aria-label="Project header">
+    <img
+      alt=""
+      src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1920' height='640'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%230b1220'/><stop offset='1' stop-color='%230f172a'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/></svg>"
+    />
+    <div class="container hero-inner">
+      <p class="kicker">Project</p>
+      <h1>Humanoid Push Recovery — Reinforcement Learning</h1>
+      <p>Cut fall-rate by 32% for 50–75&nbsp;N pushes via ADR and momentum-canceling arm swings.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html#projects">Projects</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Humanoid Push Recovery</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Meta -->
+    <div class="meta section">
+      <span class="pill">Role: RL & Controls</span>
+      <span class="pill">When: 2024–2025</span>
+      <span class="pill">Focus: Push recovery</span>
+      <span class="pill">Stack: Python, MuJoCo, RL</span>
+    </div>
+
+    <!-- Overview -->
+    <article class="prose section">
+      <h2>Overview</h2>
+      <p>
+        A deep reinforcement learning policy for <strong>humanoid push recovery</strong>. The agent withstands
+        external impulses and re-stabilizes with minimal time-to-recovery while obeying joint/torque limits.
+      </p>
+
+      <h3>Impact</h3>
+      <ul>
+        <li><strong>32% fall-rate reduction</strong> for <strong>50–75&nbsp;N</strong> pushes after re-training the whole-body policy.</li>
+        <li><strong>Expanded stable-recovery envelope</strong> using <strong>Automatic Domain Randomization</strong> and
+            <strong>high-entropy arm-motion injections</strong> that enable momentum-canceling arm swings.</li>
+      </ul>
+
+      <h3>Method</h3>
+      <ul>
+        <li><strong>Training randomizations:</strong> push direction/magnitude/timing, contact friction, mass/inertia, sensor noise.</li>
+        <li><strong>Reward shaping:</strong> stability margin (COM vs. support polygon), foot placement cost, time-to-recovery penalty, energy regularization.</li>
+        <li><strong>Action space:</strong> continuous joint targets/torques; <strong>safety wrappers</strong> clamp to joint/torque limits and filter jerks.</li>
+        <li><strong>Arm-motion entropy:</strong> injects stochastic high-entropy arm policies during training to discover swing strategies that cancel angular momentum.</li>
+      </ul>
+    </article>
+
+    <!-- Specs / Evaluation -->
+    <section class="section">
+      <h2 class="section-title">Specs & Evaluation</h2>
+      <table class="specs">
+        <tr><th>Goal</th><td>Recover from external pushes; minimize fall rate and time-to-stable</td></tr>
+        <tr><th>Disturbances</th><td>Uniform 50–75 N impulses, randomized direction and application timing</td></tr>
+        <tr><th>Training</th><td>Automatic Domain Randomization over dynamics & environment; sensor/actuation noise</td></tr>
+        <tr><th>Policy</th><td>Continuous actions with safety wrappers; momentum-canceling arm swings discovered via entropy injections</td></tr>
+        <tr><th>Metrics</th><td>Fall rate (−32%), time-to-recovery, step count, energy use</td></tr>
+        <tr><th>Sim</th><td>MuJoCo-based environment; reproducible seeds; evaluation over Monte Carlo runs</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

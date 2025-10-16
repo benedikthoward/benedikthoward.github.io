@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46NL1MC822');
+</script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Woodworking • Benedikt Howard</title>
+  <meta name="description" content="Selected custom furniture builds: epoxy resin table, hallway table, bedside table, stool, letter box, and front gate."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+
+  <style>
+    /* Optional: small price badge */
+    .price-badge{
+      position:absolute; top:10px; right:10px;
+      background:rgba(15,23,42,.9); color:#fff;
+      padding:6px 10px; border-radius:999px; font-size:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+    }
+    /* Letter Box: swap between two images on hover */
+    .card.swap .thumb{ position:relative; }
+    .card.swap .thumb img{
+      position:absolute; inset:0;
+      width:100%; height:100%; object-fit:contain; background:var(--card);
+      padding:8px; transition:opacity .25s ease, transform .25s ease;
+    }
+    .card.swap .img-a{ opacity:1; transform:scale(1); }
+    .card.swap .img-b{ opacity:0; transform:scale(1.02); }
+    .card.swap:hover .img-a{ opacity:0; transform:scale(1.02); }
+    .card.swap:hover .img-b{ opacity:1; transform:scale(1); }
+    @media (hover:none){
+      .card.swap .img-a,.card.swap .img-b{ position:static; opacity:1; transform:none; padding:0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Short hero -->
+  <header class="hero sub-hero" aria-label="Interest header">
+    <img src="../media/Woodworking/hall table 2.jpg" alt="Handmade hardwood hallway table"/>
+    <div class="container hero-inner">
+      <p class="kicker">Interest</p>
+      <h1>Woodworking</h1>
+      <p>Selected custom builds — design, joinery, finishing, and install.</p>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html#interests">Other interests</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Woodworking</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="prose section">
+      <h2>Overview</h2>
+      <p>
+        A few recent pieces ranging from live-edge epoxy to bespoke casework and outdoor joinery.
+        Each build covers design, material selection, milling, joinery, finishing, and delivery.
+      </p>
+    </article>
+
+    <section class="section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="grid">
+        <!-- Epoxy Resin Table -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Woodworking/Living room table.jpg" alt="Epoxy resin living-room table"/>
+            <span class="price-badge">$7,500</span>
+          </div>
+          <div class="card-title">Epoxy Resin Table</div>
+          <div class="caption">Live-edge slab gary oak, two layer epoxy (black dye - smokey pigments) pour.</div>
+        </div>
+
+        <!-- Hallway Table -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Woodworking/hall table 2.jpg" alt="Hallway table"/>
+            <span class="price-badge">$3,750</span>
+          </div>
+          <div class="card-title">Hallway Table</div>
+          <div class="caption">Quartersawn Black walnut with wenge accents, hand-cut joinery.</div>
+        </div>
+
+        <!-- Bedside Table -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Woodworking/bedside table.jpg" alt="Bedside table"/>
+            <span class="price-badge">$4,250</span>
+          </div>
+          <div class="card-title">Bedside Table</div>
+          <div class="caption">Inset drawer faces, soft-close hardware, color-matched panels.</div>
+        </div>
+
+        <!-- Stool -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Woodworking/stool.jpg" alt="Stool"/>
+            <span class="price-badge">$850</span>
+          </div>
+          <div class="card-title">Stool</div>
+          <div class="caption">White Maple with Black Walnut accents. Hand cut angled bridle joints </div>
+        </div>
+
+        <!-- Letter Box (two photos, hover to swap) -->
+        <div class="card swap">
+          <div class="thumb">
+            <img class="img-a" src="../media/Woodworking/letter box 2.jpeg" alt="Letter box — angled view"/>
+            <img class="img-b" src="../media/Woodworking/letter box.jpg" alt="Letter box — front view"/>
+            <span class="price-badge">Priceless</span>
+          </div>
+          <div class="card-title">Letter Box</div>
+          <div class="caption">Curly Maple with Black walnut accents. Relief cut lid with maple inlay, and engraved initials. For my love <a href="https://shuyuvankerkwijk.github.io/">Shuyu vanKerkwijk</a></div>
+        </div>
+
+        <!-- Front Gate -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/Woodworking/front gate.jpeg" alt="Front gate"/>
+            <span class="price-badge">$4,000</span>
+          </div>
+          <div class="card-title">Front Gate</div>
+          <div class="caption">Mahagony, painted. Pinned Mortise and Tendon joints</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML & CSS
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

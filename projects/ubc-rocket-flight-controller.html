@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>UBC Rocket — Flight Controller • Benedikt Howard</title>
+  <meta name="description" content="UBC Rocket Design Team: STM32H5 & STM32H7 flight controller iterations with Jetson SCvx planning, short-horizon MPC tracking, EKF sensor fusion, DMA-driven I/O, telemetry, and logging."/>
+  <link rel="stylesheet" href="../styles/site.css"/>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-46NL1MC822"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-46NL1MC822');
+  </script>
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero sub-hero" aria-label="Project header">
+    <!-- Use a photo, or swap to a diagram if you prefer -->
+    <img src="../media/rocket/rocket.jpeg" alt="UBC Rocket — flight controller and avionics work"/>
+    <div class="container hero-inner">
+      <p class="kicker">Project</p>
+      <h1>UBC Rocket — Flight Controller</h1>
+      <p>Real-time guidance &amp; control, sensor fusion, DMA-driven I/O, telemetry, and logging.</p>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container inner">
+      <a href="../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html#projects">Projects</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">UBC Rocket — Flight Controller</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- META -->
+    <div class="meta section">
+      <span class="pill">Team: UBC Rocket (Design Team)</span>
+      <span class="pill">Roles: Controls • Firmware • Systems</span>
+      <span class="pill">Buses: SPI (DMA), UART, PWM, CAN (planned)</span>
+      <span class="pill">Sensors: IMUs, Baro, GPS, Range/Lidar</span>
+    </div>
+
+    <!-- OVERVIEW -->
+    <article class="prose section">
+      <h2>Overview</h2>
+      <p>
+        I’ve contributed across two controller generations: an initial <strong>STM32H5</strong> flight computer and
+        a next-gen <strong>STM32H7</strong> controller that will be paired with a <strong>Jetson</strong> companion.
+        Our near-term platform is a rocket-style <strong>monocopter drone</strong> (rise → hover → land),
+        with a path to dual solid rocket motors (pending regulatory approval) and, longer-term, integration with the team’s
+        in-house liquid engine.
+      </p>
+
+      <h3>Impact &amp; responsibilities</h3>
+      <ul>
+        <li>Designed a <strong>robust, deterministic, and extensible</strong> software &amp; controls architecture.</li>
+        <li>Implemented <strong>EKF-based state estimation</strong> fusing dual IMUs, barometers, and GPS on the MCU.</li>
+        <li>Built <strong>SPI job queues</strong> with DMA/interrupt patterns to decouple sensor servicing from the control loop.</li>
+        <li>Contributed to <strong>telemetry &amp; logging</strong> over RFD900x radio and on-board SD (packet formats, time-base alignment).</li>
+      </ul>
+
+      <p>
+        In the H7/Jetson configuration, <strong>SCvx</strong> runs on the Jetson to plan trajectories, a short-horizon
+        <strong>MPC</strong> on the H7’s Cortex-M7 tracks the reference path, and a Cortex-M3 core handles
+        <strong>sensor fusion</strong> and <strong>high-rate I/O</strong>.
+      </p>
+    </article>
+
+    <!-- ARCHITECTURES -->
+    <section class="section">
+      <h2 class="section-title">Architectures</h2>
+      <div class="grid">
+        <!-- 2025: STM32H5 -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/rocket/rocket_fc_diagram_I.png" alt="2025 STM32H5 flight computer diagram"/>
+          </div>
+          <div class="card-title">2025 — STM32H5 Flight Computer</div>
+          <div class="caption">
+            Single-MCU design: EKF, SPI DMA job queues, UART GPS/radio, PID for gimbal/ESC, SD logging.
+          </div>
+        </div>
+
+        <!-- 2026: STM32H7 -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/rocket/rocket_fc_diagram_II.png" alt="2026 STM32H7 flight controller diagram"/>
+          </div>
+          <div class="card-title">2026 — STM32H7 Flight Controller</div>
+          <div class="caption">
+            Hard real-time control (MPC/PID) on M7; sensing/EKF on companion core; modular comms &amp; logging.
+          </div>
+        </div>
+
+        <!-- 2026–2028: Jetson + SCvx + core split -->
+        <div class="card">
+          <div class="thumb contain">
+            <img src="../media/rocket/rocket_fc_diagram_III.png" alt="Jetson SCvx with H7 M7/M3 core partitioning"/>
+          </div>
+          <div class="card-title">2026–2028 — Jetson SCvx + H7 Core Split</div>
+          <div class="caption">
+            Jetson plans with SCvx; H7-M7 tracks via short-horizon MPC; H7-M3 runs EKF + SPI DMA job queues.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section class="section">
+      <h2 class="section-title">Specs</h2>
+      <table class="specs">
+        <tr><th>Compute</th><td>2025: STM32H5 • 2026: STM32H7 (M7 control, M3 sensing) • Companion: Jetson (SCvx)</td></tr>
+        <tr><th>Guidance</th><td>SCvx trajectory optimization on Jetson → short-horizon MPC tracking on M7</td></tr>
+        <tr><th>Estimation</th><td>EKF fusing BMI088/BMI085 IMUs, MS5607/MS5611 barometers, SAM-M10Q GPS</td></tr>
+        <tr><th>I/O</th><td>SPI (DMA job queues), UART (GPS/radio), PWM (servos/ESC), CAN (planned)</td></tr>
+        <tr><th>Telemetry</th><td>RFD900x radio state machine; on-board SD logging</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Benedikt Howard • Built with HTML &amp; CSS
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
